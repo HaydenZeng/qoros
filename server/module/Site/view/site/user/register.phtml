@@ -1,0 +1,44 @@
+<div class="register-01">
+    <div class="box">
+        <h3>进入观致5 SUV“暖心计划”</h3>
+        <div class="input-box">
+            <input class="input-01" name="" type="text" placeholder="手机号码" />
+            <input class="input-01" name="openid" id="openid" type="hidden" value="<?php echo empty($openid) ? '' : $openid;?>" />
+            <span class="close"></span>
+        </div>
+        <p class="p-01" id="err_tip" style="display:none">
+            您是不是输错号码了呢？如果号码正确，则可能订单扔在上传途中，请3-5个工作日后查询。或联系观致客户关怀热线400-920-8088观致5
+            专线。</p>
+        <a class="submit-01" onclick="submitMobile()">下一步</a>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        $('.input-01').onkeydown(function(){
+            $('#err_tip').hide();
+        })
+    });
+
+    function submitMobile(){
+        var mobile = $(".input-01").val();
+        var openid = $("#openid").val();
+        $.ajax({
+            type: 'POST',
+            url: '/user/register',
+            data: {mobile:mobile,openid:openid},
+            dataType: "json",
+            beforeSend: function(){
+            },
+            complete: function(){
+            },
+            success: function (data) {
+                if (data.status > 0) {
+                    $('#err_tip').show();
+                } else {
+                    window.location.href = '/user/completeInfo';
+                }
+            }
+        });
+    }
+</script>

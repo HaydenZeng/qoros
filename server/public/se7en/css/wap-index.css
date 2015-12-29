@@ -1,0 +1,248 @@
+@charset "utf-8";
+html {  -webkit-text-size-adjust:none; font-size:100px;}
+body { -webkit-user-select: none;}
+*:focus {outline: none;}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family:SimHei;
+    text-align: left;
+    color: #333;
+    height:100%;
+}
+.mt10{ margin-top:0.1rem;}
+.mt25{ margin-top:0.25rem;}
+
+/*end container*/
+div, dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6,
+pre, code, form, input, button,
+textarea, p, blockquote,
+th, td, address,
+fieldset, legend,img
+{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: normal;
+}
+table {
+    border-collapse:collapse;
+}
+em {
+    font-style: normal;
+    font-weight: normal;
+}
+textarea {
+    resize: none;
+
+}
+li, ol {
+    list-style: none;
+}
+a {
+    color: #cfab7a;
+    text-decoration: none;
+    outline:none;
+}
+
+/*text-ellipsis*/
+.text-ellipsis {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+/*end text-ellipsis*/
+/**Start Float Clear**/
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {
+    display: inline-block;
+}
+* html .clearfix {
+    height: 1%;
+}
+.clearfix {
+    display: block;
+}
+/**End Float Clear**/
+
+/*img{max-width: 100%;}*/
+
+
+
+.pp-container{ margin: 0 auto;}
+
+/**logo**/
+.logo{ width:3.61rem; height:0.56rem; margin:0 auto; margin-top:0.52rem; margin-bottom:0.25rem;}
+.logo img{ width:100%; display:block;}
+
+/**注册**/
+.register-out{}
+.register-out .in-box{ padding:0 0.3rem; margin-top:0.33rem;}
+.register-out .in-box .input-out-01{ border:1px solid #ccc; width:3.88rem; height:0.68rem; background:#fff; border-radius: 0.03rem; float:left;}
+.register-out .in-box .input-out-01 .input-01{ border:none; float:left; line-height:0.68rem; height:0.68rem ;color:#333; font-size:0.28rem; font-family:SimHei; padding:0 0.16rem; text-align:left; width:3.18rem; }
+.register-out .in-box .input-out-02{ border:1px solid #ccc; width:5.78rem; height:0.68rem; background:#fff; border-radius: 0.03rem; float:left;}
+.register-out .in-box .input-out-02 .input-01{ border:none; float:left; line-height:0.68rem; height:0.68rem ;color:#333; font-size:0.28rem; font-family:SimHei; padding:0 0.16rem; text-align:left; width:5.06rem; }
+.register-out .in-box .input-active{ border:1px solid #cfab7a;}
+
+.register-out .in-box .close{ float:left; width:0.25rem; height:0.25rem; background:url(../img/sudndo-02.gif) 0 0 no-repeat; background-size:100% auto; margin-top:0.21rem; cursor:pointer;}
+.register-out .in-box .yzm-01{ cursor:pointer; width:1.7rem; height:0.7rem; background:#ccc; line-height:0.7rem; text-align:center; color:#fff; float:right; font-size:0.28rem;border-radius: 0.03rem;}
+.register-out .in-box .yzm-02{ background:#cfab7a;}
+.register-out .error{ color:#ff0000; font-size:12px; background:url(../img/wap-bg-06.gif) 0 center no-repeat; padding-left:22px; line-height:20px; margin-top:0.05rem; float:left; width:100%; box-sizing: border-box !important;}
+.register-out .submit-out{ padding:0 0.3rem; }
+.register-out .submit-01{ width:100%; height:0.7rem; box-sizing: border-box !important;   line-height:0.7rem; color:#fff; font-size:0.28rem; background:#ccc; display:inline-block; margin-top:0.42rem; text-align:center; border-radius: 0.03rem; cursor: pointer; text-decoration: none;}
+.register-out .submit-01-active{ background:#cfab7a;}
+.register-out .ewm{ background:#fff; width:3.8rem; height:3.8rem; border-radius: 0.03rem; margin-top:0.3rem; float:left; padding:0.9rem; margin-left:0.3rem;}
+.register-out .ewm img{ width:100%;}
+.register-out .ps-01{ color:#999; font-size:0.28rem; text-align:center; float:left; width:100%; margin-top:0.1rem;}
+.register-out .ps-02{ background:#fff; line-height:0.35rem; color:#fff; color:#333; font-size:0.28rem; padding:0.5rem 0.3rem; margin-top:0.05rem;}
+
+
+
+.attention{ margin:0.4rem 0.3rem; border:1px solid #a6a6a6; border-radius: 0.05rem; padding:0.3rem 0.2rem 0.1rem 0.2rem; background:#fff;}
+.attention p{ font-size:0.28rem; color:#333; line-height:0.32rem;}
+.attention .bottom{ border-top:1px solid #eceef1; line-height:0.5rem; height:0.5rem; font-size:0.28rem; margin-top:0.3rem;}
+.attention .bottom a{color:#000; width:100%; display:block; background:url(../img/sudndo-04.gif) right center no-repeat; background-size:0.15rem auto;}
+
+/**个人信息**/
+.info-list{ margin-top:0.18rem; background:#fff; border-bottom:1px solid #ccc;   border-top:1px solid #ccc;}
+.info-list li { border-bottom: 1px solid #ccc; font-size: 0.28rem;height: 0.78rem;line-height: 0.78rem;margin-left: 0.3rem;}
+.info-list li .sp-01{ color:#999; float:left;width: 1.8rem;}
+.info-list li .sp-02{ color:#333; float:left; white-space:nowrap; text-overflow:ellipsis; overflow: hidden; width: 60%;}
+.info-list li .sp-03{ color:#333; float:right; font-size:0.28rem; padding-right:0.3rem;}
+.info-list li .ico { background: rgba(0, 0, 0, 0) url("../img/sudndo-05.png") no-repeat scroll 0 0 / 100% auto;  float: right;  height: 0.27rem;  margin-right: 0.3rem;  margin-top: 0.27rem;  width: 0.15rem; }
+
+.info-list li a{ height:100%; width:100%; display:block;}
+
+.info-list .li-01{ margin-left:0}
+.info-list .li-01 .name{ float:left;  font-size:0.28rem; background:url(../img/sudndo-10.gif) 0 center no-repeat; background-size:0.5rem auto; margin-left: 0.34rem;padding-left: 0.62rem;color:#333;}
+.info-list .li-01 .name2{ float:left;  font-size:0.28rem; background:url(../img/sudndo-11.gif) 0 center no-repeat; background-size:0.5rem auto;padding-left:0.72rem; color:#333;}
+
+
+
+
+.info-list .zt{ float:right; color:#cfab7a; font-size:0.24rem; padding-right:0.3rem;}
+.info-list .li-01 .ico{float:right; margin-right:0.3rem; width:0.15rem; height:0.27rem; background:url(../img/sudndo-05.png) 0 0 no-repeat; background-size:100% auto; margin-top:0.27rem;}
+
+.editor-list{margin-top:0.18rem; background:#fff; border-top:1px solid #cfab7a;}
+.editor-list li{ height:0.88rem; line-height:0.88rem;  border-bottom:1px solid #cfab7a;  font-size:0.28rem; padding:0 0.3rem;}
+.editor-list li .sp-01{ color:#666; float:left; width:1.48rem;}
+.editor-list li input{ height:0.88rem; float:left; width:4.3rem; font-size:0.28rem; font-family:SimHei; }
+
+
+.head-top{ height:0.8rem; width:100%; background:#cfab7a; text-align:center;}
+.head-top .right-num{ float:right; background:#fff;margin:0.18rem 0.3rem 0 0; height:0.45rem; width:0.84rem; line-height:0.45rem; font-size:0.28rem; color:#cfab7a; text-align:center; border-radius: 0.03rem;}
+.head-top h3{ line-height:0.8rem; color:#fff; display:block; width:auto; font-size:0.28rem; margin:0 1.18rem}
+.head-top .return{ float:left; font-size:0.28rem; color:#fff; padding-left:0.28rem; background:url(../img/sudndo-06.png) 0 center no-repeat;  background-size:0.19rem auto; margin-left:0.28rem; margin-top:0.26rem;}
+
+.head-top .left-a{ float:left; width:0.22rem; height:0.25rem; background:url(../img/sudndo-12.gif) 0 0 no-repeat; background-size:100% auto; margin:0.3rem 0 0 0.3rem;}
+.head-top .right-a{ float:right; width:0.22rem; height:0.25rem; background:url(../img/sudndo-13.gif) 0 0 no-repeat; background-size:100% auto; margin:0.3rem 0.3rem 0 0;}
+
+
+.package-box .ps{ height:0.84rem;  line-height:0.84rem; background:#f0f0f0;}
+.package-box .ps span{ color:#ccc; font-size:0.28rem; background:url(../img/sudndo-07.png) 0  center no-repeat; background-size:0.28rem auto; padding-left:0.44rem; margin-left:0.3rem; color:#e7b344;}
+.package-box  .top{ height:0.64rem; line-height:0.64rem; background:#fff; font-size:0.28rem; padding:0 0.3rem 0 0.28rem;border-bottom: 1px solid #ccc;margin-bottom: 0.2rem;}
+.package-box  .top .sp-01{ float:left;}
+.package-box  .top .sp-02{ float:right;}
+.package-box  .top .sp-021{ color:#666;font-size:0.2rem;}
+
+.package-box .ul-01{ background:#fff; border-bottom:1px solid #ccc; border-top:1px solid #ccc;}
+.package-box .ul-01 li{ border-bottom:1px solid #ccc; margin-left:0.28rem; font-size:0.28rem; padding-bottom:0.26rem; padding-top:0.26rem; }
+.package-box .ul-01 li img{ width:1.25rem; height:1.25rem; float:left;  border-radius: 0.03rem;}
+.package-box .ul-01 li .num{ float:left; padding-left:0.28rem; width:4.02rem;}
+.package-box .ul-01 li .num .p-01{ float:left; width:100%; color:#333; line-height:0.28rem; height:0.56rem; overflow:hidden; margin-top:0.15rem;}
+.package-box .ul-01 li .num .p-02{ float:left; width:100%; color:#666; margin-top:0.1rem;}
+.package-box .ul-01 li  .ico{ float:right; margin-right:0.3rem; width:0.15rem; height:0.27rem; background:url(../img/sudndo-05.png) 0 0 no-repeat; background-size:100% auto; margin-top:0.5rem;}
+.package-box .ul-01 li a{ float:left; width:100%; height:100%;}
+
+.package-box .ld-box{ border-top:1px solid #ccc;  border-bottom:1px solid #ccc;  background:#fff; margin-bottom:0.14rem;}
+.package-box .ld-box .bg-01{background-color: #fff;color:#666; }
+.package-box .ld-box .bg-02{background-color: #fff;color:#666; }
+.package-box .ld-box .pt-01{ border-bottom:1px solid #ccc; line-height:0.78rem; height:0.78rem; font-size:0.28rem;padding: 0 0.3rem 0 0.28rem;}
+.package-box .ld-box .pt-01 .sp-01{ float:left; color:#666; }
+.package-box .ld-box .pt-01 .sp-01-1{ float:left; color:#666; font-size:0.22rem;}
+.package-box .ld-box .pt-01 .sp-02{color:#666;font-size: 0.35rem;margin-left:1.7rem}
+.package-box .ld-box .pt-01 .sp-02-1{color:#666;float: right;font-size: 0.2rem;}
+.package-box .ld-box .pt-01 .sp-03{ float:right; font-size:0.24rem;}
+.package-box .ld-box .pt-01 .sp-04{ float:right; font-size:0.24rem;}
+.package-box .ld-box .pt-01 .line{ float:left; width:0.01rem; height:0.44rem;  margin:0 0.3rem; background:#ccc; margin-top:0.2rem;}
+.package-box .ld-box .title{ color:#333; font-size:0.32rem; padding:0.3rem 0.28rem; line-height:0.34rem; text-align: left;}
+.package-box .ld-box .text{ background:#fff; border-radius: 0.03rem; line-height:0.3rem; margin-bottom:0.34rem;}
+.package-box .ld-box .text .sp-01{ float:left; color:#666; font-size:0.24rem; padding-left:0.28rem; width:4.6rem;}
+.package-box .ld-box .text .ico{ float:right; margin:0 0.28rem 0 0; width:0.43rem; height:0.43rem; background:url(../img/sudndo-09.gif) 0 0 no-repeat; background-size:100% auto; }
+.package-box .ld-box .text .pause-ico{ float:right; margin:0 0.28rem 0 0; width:0.43rem; height:0.43rem; background:url(../img/sudndo-14.gif) 0 0 no-repeat; background-size:100% auto; }
+.package-box .ld-box .view{height:0.5rem; padding-right:0.3rem;}
+.package-box .ld-box .view .view-a{ float:right; line-height:0.4rem; text-align:center; color:#666; font-size:0.2rem; margin-top:0.05rem; border-radius: 0.03rem;}
+
+.pp-container{ margin: 0 auto;max-width:640px;}
+
+.no-info{ text-align:center; padding-top:2rem;}
+.no-info .sp-01{ width:1.8rem; height:2rem; background:url(../img/sudndo-15.gif) 0 0 no-repeat; background-size:100% auto; display:inline-block;}
+.no-info p{ width:100%; display:inline-block; color:#999; font-size:0.28rem;}
+
+.logistics-box{ border:1px solid #ccc; border-left:none; border-right:none; background:#fff; margin-top:0.2rem; padding:0.26rem 0;}
+.logistics-box dl{ line-height:0.38rem; font-size:0.28rem; color:#666; margin-left:0.28rem;}
+.logistics-box dl dt{ float:left; width:1.4rem;}
+.logistics-box dl dd{ float:left; width:4.34rem;}
+.logistics-box dl dd .em-01{ color:#cfab7a;}
+
+.hd-all{ margin-bottom:0.3rem; overflow:hidden;}
+.hd-all .bd{ border:1px solid #ccc; background:#fff; margin:0.12rem 0.2rem; padding:0 0.3rem;}
+.hd-all .bd .ul-01 li{ line-height:0.8rem; padding:0 0.2rem; border-top:1px solid #ccc;}
+.hd-all .bd .ul-01 li .sp-01{ float:left; color:#333; font-size:0.32rem; width:2.0rem;}
+.hd-all .bd .ul-01 li .ys-01{ float:left; color:#cfab7a; font-size:0.32rem;}
+.hd-all .bd .ul-01 li .ys-02{ float:left; color:#f14040; font-size:0.32rem;}
+.hd-all .bd .ul-01 li .sp-02{ float:right; color:#333; font-size:0.32rem;}
+.hd-all .bd .ul-01 li .a-01{ float:right; width:1.31rem; height:0.5rem; border:1px solid #ccc; text-align: center; line-height:0.5rem; color:#333; font-size:0.32rem; margin-top:0.14rem; border-radius:0.1rem;}
+.hd-all .bd .ul-01 li:first-child{ border-top:none;}
+.hd-all .bd-02{ border:1px solid #ccc; border-top:none; background:#fff; height:9rem; margin:0.12rem  0.2rem; text-align:center;}
+.hd-all .bd-02 .sp-01{ font-size:0.48rem; color:#333; width:100%; text-align:center; margin-top:1.45rem; display:inline-block;}
+.hd-all .bd-02 .sp-02{ font-size:0.48rem; color:#333; width:100%; text-align:center; margin-top:1.3rem;display:inline-block; margin-bottom:2.06rem;}
+.hd-all .bd-02 .a-01{ font-size:0.3rem; color:#333;  text-align:center; margin-bottom:0.2rem; width:3.58rem; height:0.74rem; border:1px solid #ccc; margin-top:0.2rem; display:inline-block; line-height:0.74rem;}
+
+.hd-all .hd-in{background:#fff; padding:0 0.08rem; padding-bottom:0.08rem; border:1px solid #ccc; margin:0.12rem 0.2rem 0 0.2rem;}
+.hd-all .hd-in .left-img{  float: left; height:1.2rem;width: 1.8rem; margin: 0.08rem 0.42rem 0 0;}
+.hd-all .hd-in .left-img img{ height:1.2rem;width:1.8rem;}
+.hd-all .hd-in .right-text{color: #666;overflow: hidden; line-height:0.24rem; margin-top:0.1rem;}
+.hd-all .hd-in .right-text h3{ color:#333; font-size:0.24rem;}
+.hd-all .hd-in .right-text p{ color:#333; font-size:0.24rem; margin-top:0.21rem;}
+
+.hd-all .bd-03{ border:1px solid #ccc; background:#fff; margin:0.12rem 0.2rem; text-align:center; padding:0 0.38rem;}
+.hd-all .bd-03 .title{ color:#333; font-size:0.44rem; line-height:0.4rem;text-align:left; margin-top:0.25rem; float:left; width:100%;}
+.hd-all .bd-03 img{vertical-align: middle;width: 60%;margin-top: 0.7rem;margin-bottom: 0.4rem;max-width: 100% !important;}
+.hd-all .bd-03 p{ color:#666; font-size:0.24rem;  line-height: 0.28rem;margin-top: 0.15rem; text-align: left;}
+.hd-all .bd-03 .zt{ width:100%; color:#333; font-size:0.36rem; margin-top:0.7rem; line-height:0.4rem;}
+.hd-all .bd-03 .zt em{ color:#cfab7a; font-size:0.36rem;}
+.hd-all .bd-03 .a-01{ font-size:0.3rem; color:#333;  text-align:center; margin-bottom:0.3rem; width:3.58rem; height:0.74rem; border:1px solid #ccc; margin-top:0.3rem; display:inline-block; line-height:0.74rem;}
+.hd-all .bd-03 .a-02{ font-size:0.3rem; color:#333;  text-align:center;  width:3.58rem; height:0.74rem; border:1px solid #ccc; margin-top:0.3rem; display:inline-block; line-height:0.74rem;}
+.hd-all .bd-03 .a-02 em{ width:0.27rem; height:0.27rem; background:url(../img/bg-16.gif) 0 0 no-repeat; background-size:100% auto; display:inline-block; margin-left:0.2rem;}
+
+.tab-ul{border-top:1px solid #ccc;border-bottom:1px solid #ccc; overflow:hidden;}
+.tab-ul li{ float:left; width:50%;box-sizing: border-box !important; border-right:0.02rem solid #ccc; height:0.8rem; background:#fff; text-align:center;  font-size:0.26rem; line-height:0.8rem;}
+.tab-ul li a{ color:#333; width:100%; height:0.8rem; display:block;}
+.tab-ul .active{ background:#cfab7a;}
+
+.friend-list{ overflow:hidden; border:1px solid #ccc; background:#fff;  margin:0.2rem 0.2rem 0 0.2rem; border-bottom:none; }
+.friend-list li{ height:0.8rem; line-height:0.8rem; font-size:0.26rem; padding:0 0.4rem;  border-bottom:1px solid #ccc;}
+.friend-list li a{ color:#333;  width:100%; height:0.8rem; display:block;}
+
+
+.editor-list select{	-webkit-appearance: none;appearance: none;border-radius: 0;height:0.88rem;line-height:0.88rem;padding: 0 0.3rem 0 0;color: #757575;box-sizing: border-box;
+    background:url(../img/sudndo-16.gif) 3.5rem center no-repeat;  text-align: center;font-size: 0.28rem;font-family:SimHei; background-size:0.18rem auto; float:left; width:3.6rem; text-align:left; margin-right:0.13rem;  border:none;}
+
+
+*, *::before, *::after {
+    box-sizing: content-box !important;
+}
+

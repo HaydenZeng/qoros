@@ -1,0 +1,63 @@
+<div class="bg-01">
+    <span class="tx"><img src="<?php echo isset($user->avatar)?$user->avatar:'';?>" /></span>
+    <div class="text-out">
+        <p class="text"><em class="em-01">姓名</em><em class="em-02"><?php echo $user->username;?></em></p>
+        <p class="text"><em class="em-01">手机</em><em class="em-02"><?php echo $user->mobile;?></em></p>
+        <p class="text"><em class="em-01">地址</em><em class="em-02" style="height:0.96rem; overflow:hidden;">
+                <?php echo $state->district.$city->district.$user->addr_detail;?></em></p>
+        <a class="submit-03" href="/user/completeInfo">修改我的信息</a>
+    </div>
+    <div class="wx">
+        <p class="p-01">即日起，关注“观致汽车”官方微信号，完成神秘任务，参与抽奖活动，就有机会赢取观致暖心精品附件和神秘海外之旅！<br />如有其他问题，可扫描二维码关注“观致小Q”进行咨询。</p>
+        <img src="img/bg-14.gif" />
+        <p class="p-02">关注“观致小Q”<br />了解更多详情</p>
+    </div>
+    <div class="wx-2">您可以通过点击以下任务提前了解任务规则，我们将定期开启任务。请实时关注任务状态，不要错过观致5 SUV暖心为您呈现的专属精彩！</div>
+
+
+
+    <?php
+        $now = time();
+        foreach ($activitys as $k => $activity) {
+            $pre = 'hd-0'.($k+1);
+            $click = '';
+            if(isset($activity->startTime) && $activity->startTime->getTimestamp() < $now){
+                $click = 'hd-0'.($k+1).'-click';
+            }
+
+            $over = false;
+            if(isset($activity->endTime) && $activity->endTime->getTimestamp() < $now){
+                $over = 'hd-0'.($k+1).'-over';
+            }
+
+            $href = '';
+            switch($k){
+                case 0:
+                    $href = ($click)?'/index/activityOne':'';
+                    break;
+                case 1:
+                    $href = ($click)?'/index/activityTwo':'';
+                    break;
+                case 2:
+                    $href = ($click)?'/index/activityThree':'';
+                    break;
+                case 3:
+                    $href = ($click)?'/index/activityFour':'';
+                    break;
+                case 4:
+                    $href = ($click)?'/index/activityFive':'';
+                    break;
+                case 5:
+                    $href = ($click)?'/index/activitySix':'';
+                    break;
+            }
+            echo ' <a href="'.$href.'" class="'.$pre.' '. $click.' '. $over.'"></a>';
+        }
+    ?>
+
+</div>
+
+
+<script>
+
+</script>

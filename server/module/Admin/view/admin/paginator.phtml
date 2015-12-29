@@ -1,0 +1,70 @@
+<?php if ($this->pageCount): ?>
+    <?php
+    $baseParams = array();
+    if (isset($this->action)) {
+        $baseParams['action'] = $this->action;
+    }
+    if (isset($this->id)) {
+        $baseParams['id'] = $this->id;
+    }
+    if (isset($this->controller)) {
+        $baseParams['controller'] = $this->controller;
+    }
+
+    if (!isset($options)) {
+        $options = array();
+    }
+    ?>
+
+<ul class="pagination pull-right">
+
+    <?php if (isset($this->previous)): ?>
+        <?php
+        $params = $baseParams;
+        $params['page'] = $this->previous;
+        ?>
+        <li>
+            <!--<a class="icon" href="#"><i class="icon-long-arrow-left"></i></a>-->
+            <a class="icon" href="<?php echo $this->url($this->route, $params, $options);?>"><i class="icon-long-arrow-left"></i></a>
+        </li>
+
+    <?php else: ?>
+        <li class="disabled">
+            <a class="icon"><i class="icon-long-arrow-left"></i></a>
+        </li>
+    <?php endif; ?>
+
+
+    <?php foreach ($this->pagesInRange as $page): ?>
+        <?php if ($page != $this->current): ?>
+            <?php
+            $params = $baseParams;
+            $params['page'] = $page;
+            ?>
+            <li>
+                <a href="<?php echo $this->url($this->route, $params, $options);?>" class="num"><?php echo $page; ?></a>
+            </li>
+        <?php else: ?>
+            <li class="active">
+                <a class="num"><?php echo $page; ?></a>
+            </li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+
+
+    <?php if (isset($this->next)): ?>
+        <li>
+            <?php
+            $params = $baseParams;
+            $params['page'] = $this->next;
+            ?>
+            <!--<a class="icon" href="#"><i class="icon-long-arrow-right"></i></a>-->
+            <a class="icon" href="<?php echo $this->url($this->route, $params, $options);?>"><i class="icon-long-arrow-right"></i></a>
+        </li>
+    <?php else:?>
+        <li  class="disabled"><a class="icon"><i class="icon-long-arrow-right"></i></a></li>
+    <?php endif; ?>
+
+</ul>
+
+<?php endif; ?>

@@ -1,0 +1,67 @@
+<!-- Navigation -->
+<div class="navbar navbar-fixed-top scroll-hide">
+    <div class="container-fluid top-bar">
+        <div class="pull-right">
+            <ul class="nav navbar-nav pull-right">
+
+                <li class="dropdown user hidden-xs">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <?php echo isset($this->identity()->username) ? $this->identity()->username :'';?>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/user/logout">
+                                <i class="icon-signout"></i>退出登陆</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <button class="navbar-toggle">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="logo">观致汽车</a>
+<!--        <form class="navbar-form form-inline col-lg-2 hidden-xs">-->
+<!--            <input class="form-control" placeholder="Search" type="text">-->
+<!--        </form>-->
+        <p style="padding: 14px 10px 0 0;" >观致汽车管理后台</p>
+    </div>
+
+
+    <div class="container-fluid main-nav clearfix">
+
+        <div class="nav-collapse">
+            <ul class="nav">
+                <li>
+                    <a href="/adm" <?php echo isset($isIndex) ? 'class="current"':'';?> >
+                        <span aria-hidden="true" class="icon-group"></span>用户管理
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/adm/admin-goods/index" <?php echo isset($isGoods) ? 'class="current"':'';?> >
+                        <span aria-hidden="true" class="icon-gift"></span>奖品管理</a>
+                </li>
+
+                <li>
+                    <a href="/adm/admin-award/index" <?php echo isset($isAward) ? 'class="current"':'';?> >
+                        <span aria-hidden="true" class="icon-cogs"></span>奖项设置</a>
+                </li>
+
+                <li>
+                    <a href="/adm/admin-award/winList" <?php echo isset($isWin) ? 'class="current"':'';?> >
+                        <span aria-hidden="true" class="icon-trophy"></span>中奖列表</a>
+                </li>
+
+                <li>
+                    <a href="/adm/admin-index/shareList" <?php echo isset($isIndex) ? 'class="current"':'';?> >
+                        <span aria-hidden="true" class="icon-share"></span>分享列表</a>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+</div>

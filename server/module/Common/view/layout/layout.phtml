@@ -1,0 +1,21 @@
+<?php echo $this->doctype(); ?>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <?php echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+
+    <base href="<?php echo $this->basePath(); ?>" />
+
+
+</head>
+<body>
+
+    <?php echo $this->content; ?>
+    <?php echo $this->inlineScript(); ?>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="bzhang (generated)" id="20151223-1">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="VARCHAR(40)"/>
+            <column name="mobile" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(45)"/>
+            <column name="open_id" type="VARCHAR(255)"/>
+            <column name="role" type="VARCHAR(45)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="is_delete" type="BIGINT(19)"/>
+            <column name="created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet author="bzhang" id="20151223-2">
+        <createTable tableName="districts">
+            <column autoIncrement="true" name="id" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="code" type="VARCHAR(10)" >
+                <constraints nullable="false" />
+            </column>
+            <column name="district" type="VARCHAR(50)" >
+                <constraints nullable="false" />
+            </column>
+            <column name="pinyin" type="VARCHAR(50)" >
+                <constraints nullable="false" />
+            </column>
+            <column name="short" type="VARCHAR(50)" />
+            <column name="parent_code" type="VARCHAR(10)"/>
+            <column name="parent_id" type="BIGINT(19)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="bzhang" author="20151223-3" >
+        <loadData
+                file="data/districts.csv"
+                tableName="districts"/>
+    </changeSet>
+
+    <changeSet author="bzhang" id="20151223-4">
+        <addColumn tableName="users">
+            <column   name="is_luck_draw_1" type="BIGINT(19)" defaultValueNumeric="0"/>
+            <column   name="is_luck_draw_2" type="BIGINT(19)" defaultValueNumeric="0"/>
+            <column   name="is_luck_draw_3" type="BIGINT(19)" defaultValueNumeric="0"/>
+            <column   name="is_luck_draw_4" type="BIGINT(19)" defaultValueNumeric="0"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="bzhang" id="20151223-5">
+        <addColumn tableName="users">
+            <column   name="state" type="VARCHAR(45)" />
+            <column   name="city" type="VARCHAR(45)"  />
+            <column   name="district" type="VARCHAR(45)"  />
+            <column   name="postcode" type="VARCHAR(45)"  />
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="bzhang" id="20151223-6">
+        <addColumn tableName="users">
+            <column name="addr_detail" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="bzhang" id="20151223-7">
+        <addColumn tableName="users">
+            <column name="avatar" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+
+
+
+    <changeSet author="bzhang (generated)" id="20151223-8">
+        <createTable tableName="shares">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="INT(10)"/>
+            <column name="open_id" type="VARCHAR(255)"/>
+            <column name="activity_id" type="INT(10)"/>
+            <column name="created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="xlong" id="20151226-1">
+        <createTable tableName="award_goods">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="inventory" type="INT"/>
+            <column name="created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="xlong" id="20151226-2">
+        <createTable tableName="award_items">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="activity_id" type="INT(10)"/>
+            <column name="goods_id" type="INT(10)"/>
+            <column name="rate" type="DECIMAL(3,2)"/>
+            <column name="count" type="INT"/>
+            <column name="created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="xlong" id="20151226-3">
+        <createTable tableName="wins">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="INT(10)"/>
+            <column name="item_id" type="INT(10)"/>
+            <column name="created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet author="xlong" id="20151226-4">
+        <createTable tableName="activities">
+            <column autoIncrement="true" name="id" type="INT(10)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="start_time" type="datetime"/>
+            <column name="end_time" type="datetime"/>
+            <column name="created" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet author="bzhang" id="20151228-1">
+        <addColumn tableName="activities">
+            <column name="type" type="VARCHAR(45)" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="xlong" id="20151226-5">
+        <loadData
+            file="data/goods.csv"
+            tableName="award_goods"/>
+    </changeSet>
+
+    <changeSet author="xlong" id="20151226-6">
+        <loadData
+                file="data/activities.csv"
+                tableName="activities"/>
+    </changeSet>
+
+    <changeSet author="xlong" id="20151226-7">
+        <loadData
+                file="data/items.csv"
+                tableName="award_items"/>
+    </changeSet>
+
+    <changeSet author="xlong" id="20151226-8">
+        <addColumn tableName="wins">
+            <column name="activity_id" type="INT(10)" />
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

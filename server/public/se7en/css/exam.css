@@ -1,0 +1,35 @@
+.question-save{
+    background: #b4975a none repeat scroll 0 0;
+    border-radius: 0.05rem;
+    color: #fff;
+    float: left;
+    font-size: 0.18rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    margin: 0.5rem 0.3rem 0;
+    text-align: center;
+    width: 5.2rem;
+}
+
+.other-input {
+    background: #eee none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 0.05rem;
+    color: #323232;
+    font-family: Microsoft YaHei,宋体;
+    font-size: 0.26rem;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    padding: 0 0.1rem;
+    width: 2.5rem;
+}
+
+#err-msg {
+    background: #ff0000 none repeat scroll 0 0;
+    box-shadow: 0 4px 8px #dcdcdc;
+    float: left;
+    margin-top: 0.2rem;
+    padding: 0.1rem 0.3rem;
+    width: 5.8rem;
+    font-size: 0.32rem;
+}

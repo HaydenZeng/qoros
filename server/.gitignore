@@ -1,0 +1,14 @@
+nbproject
+._*
+.~lock.*
+.buildpath
+.DS_Store
+.project
+.settings
+data/trash
+data/log
+public/upload
+public/Robots.txt
+scripts/build/dev_*.properties
+data/DoctrineORMModule/
+.idea

@@ -1,0 +1,22 @@
+{
+    "name": "dang5/Site",
+    "description": "web for Site",
+    "require": {
+        "php": ">=5.4.0",
+        "zendframework/zendframework": "2.2.*",
+        "bjyoungblood/bjy-authorize": "1.4.*",
+        "zf-commons/zfc-admin": "0.1.0",
+        "doctrine/doctrine-orm-module": "0.7.*",
+        "beberlei/DoctrineExtensions": "1.*",
+        "doctrine/data-fixtures": "dev-master",
+        "neilime/zf2-mobile-detect": "dev-master",
+        "PHPOffice/PHPExcel": "1.8.*"
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "repositories": [
+        {"type": "composer", "url": "http://packagist.phpcomposer.com"},
+        {"packagist": false}
+    ]
+}

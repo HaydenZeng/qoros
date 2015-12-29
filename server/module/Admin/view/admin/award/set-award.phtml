@@ -1,0 +1,136 @@
+<!-- End Navigation -->
+<div class="container-fluid main-content">
+    <!-- DataTables Example -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+                <div class="widget-content padded clearfix">
+
+                    <div class="heading">
+                        <i class="icon-table"></i>设置奖项<br><br>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <th width="25%">
+                            奖品名称
+                        </th>
+                        <th width="25%">
+                            数量
+                        </th>
+                        <th width="25%">
+                            中奖率(%)
+                        </th>
+                        <th>
+                            操作
+                        </th>
+                        </thead>
+                        <tbody>
+                        <?php foreach($itemList as $item):?>
+                            <tr>
+                                <input type="hidden" id="itemId" value="<?php echo $item->id;?>">
+
+                                <td>
+                                    <a><?php echo $item->goods->name;?></a>
+                                </td>
+                                <td id="count"><?php echo $item->count;?></td>
+                                <td id="rate" class="rate"><?php echo $item->rate * 100;?></td>
+                                <td>
+                                    <a class="edit">编辑</a>
+                                    <div id="btn-box" style="display: none;">
+                                        <a class="btn-ok">确认</a>
+                                        <a class="btn-cancel">取消</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+
+                        <tr>
+                            <td>
+                                谢谢参与
+                            </td>
+                            <td>
+                                -
+                            </td>
+                            <td id="rate_thanks"></td>
+                            <td>
+                                -
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    var originCount = 0;
+    var originRate = 0;
+
+    $(function(){
+        culThanksRate();
+
+        $('.edit').click(function(){
+            $(this).hide();
+            $(this).parent().find('#btn-box').show();
+            var count = $(this).parent().parent().find('#count').html();
+            var rate = $(this).parent().parent().find('#rate').html();
+            originCount = count;
+            originRate = rate;
+            $(this).parent().parent().find('#count').html('<div class="col-md-7"><input id="input-count" class="form-control" type="text" value="'+count+'"></div>');
+            $(this).parent().parent().find('#rate').html('<div class="col-md-7"><input id="input-rate" class="form-control" type="text" value="'+rate+'"></div>');
+        });
+
+        $('.btn-cancel').click(function(){
+            hideEdit(this,originCount,originRate);
+        });
+
+        $('.btn-ok').click(function(){
+            var itemId = $(this).parent().parent().parent().find('#itemId').val();
+            var count = $(this).parent().parent().parent().find('#input-count').val();
+            var rate = $(this).parent().parent().parent().find('#input-rate').val();
+            var btn_cancel = $(this).parent().find('.btn-cancel');
+            $.ajax({
+                type: 'POST',
+                url: '/adm/admin-award/setAward',
+                data: {
+                    itemId:itemId,
+                    count:count,
+                    rate:rate
+                },
+                dataType: "json",
+                success: function (data) {
+                    if(data.status > 0){
+                        showModal('系统提示',data.message);
+                    } else  {
+                        hideEdit(btn_cancel,count,rate);
+                        culThanksRate();
+                    }
+                }
+            });
+        });
+    });
+
+    function hideEdit(obj,count,rate){
+        $(obj).parent().parent().find('.edit').show();
+        $(obj).parent().hide();
+        $(obj).parent().parent().parent().find('#count').html(count);
+        $(obj).parent().parent().parent().find('#rate').html(rate);
+    }
+
+    function culThanksRate(){
+        var thanks = 100;
+        $('.rate').each(function(){
+            var r = $(this).html();
+            thanks -= parseFloat(r);
+        });
+        $('#rate_thanks').html(thanks);
+    }
+
+</script>

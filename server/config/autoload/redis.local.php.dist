@@ -1,0 +1,14 @@
+<?php
+return array(
+    'redis' => array(
+        'host' => 'localhost',
+        'port' => '6379',
+        'prefix' => 'guizhang_'
+    ),
+    'service_manager' => array(
+        'factories' => array(
+            'Common\Gateway\RedisGateway'
+            => 'Common\Redis\RedisGatewayFactory',
+        ),
+    ),
+);

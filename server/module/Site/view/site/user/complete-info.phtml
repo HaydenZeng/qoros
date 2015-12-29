@@ -1,0 +1,94 @@
+<div class="register-01 register-02">
+
+    <form id="user-form" method="post">
+        <div class="box">
+            <h3>请填写您的个人信息</h3>
+            <p class="ps">*以下信息仅用于核实您的订单资料和礼品递送，不会有第三方使用。</p>
+
+            <div class="input-box-out">
+                <div class="input-box">
+                    <input class="input-01" value="<?php echo $user->username;?>"  name="username" type="text" placeholder="姓名" />
+                    <span class="close"></span>
+                </div>
+
+                <div  id="ChinaArea">
+                    <select class="select-01" id="state" name="state"><option>省份</option></select>
+                    <select class="select-01"  id="city" name="city" style="margin-right:0; float:right"
+                    name=""><option>城市</option></select>
+                    <select style="display: none;" class="form-control" id="district" name="district"> </select>
+                </div>
+
+                <div class="input-box">
+                    <input class="input-01" name="addr_detail" id="addr_detail" type="text"
+                           placeholder="详细地址（_区/县_路_弄/号_室）" value="<?php echo isset($user->addr_detail)?
+                        $user->addr_detail:'';?>"/>
+                    <span class="close"></span>
+                </div>
+                <div class="input-box">
+                    <input class="input-01" name="postcode" id="postcode" type="text" placeholder="邮编"  value="<?php
+                    echo isset($user->postcode)? $user->postcode:'';?>" />
+                    <span class="close"></span>
+                </div>
+                <a class="submit-01" onclick="submitInfo()">进入我的“暖心计划”</a>
+                <div class="in-box" id="err_tip" style="display: none;">
+                    <p class="ps2" id="err_content">请填写完整信息并检查<br />是否填写正确，谢谢！</p>
+                    <a class="submit-02" onclick="closeTip()">继续填写</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<input type="hidden" value="<?php echo isset($user->state)?$user->state:false;?>" id="lastState">
+<input type="hidden" value="<?php echo isset($user->city)?$user->city:false;?>" id="lastCity">
+<input type="hidden" value="<?php echo isset($user->district)?$user->district:false;?>" id="lastDistrict">
+
+<script src="/js/district/YLChinaArea.js"></script>
+<script src="/js/district/location.js"></script>
+<script src="/js/district/HSselect.js"></script>
+<script>
+    /**
+     * 关闭提示
+     */
+    function closeTip(){
+        $('#err_tip').hide();
+    }
+
+    jQuery(function($){
+        $('#ChinaArea').jChinaArea({
+            s1:"江苏省",//默认选中的省名
+            s2:"苏州市",//默认选中的市名
+            s3:"园区"//默认选中的县区名
+        });
+
+        sProvince = $('#state');
+        sCity = $('#city');
+        sCounty = $('#district');
+        sProvince.empty();
+        sCity.empty();
+        sCounty.empty();
+        var loc	= new Location();
+        loc.fillOptionByCode(sProvince , '0', $('#lastState').val());
+        loc.fillOptionByCode(sCity , '0,'+sProvince.val(), $('#lastCity').val());
+        loc.fillOptionByCode(sCounty , '0,' + sProvince.val() + ',' + sCity.val(), $('#lastDistrict').val());
+
+    });
+
+
+    function submitInfo(){
+        var postcode = $("#postcode").val();
+        if($('#state').val() == 0 || $('#city').val() == 0){
+            $("#err_tip").show();
+            $("#err_content").html('请选择您的地址');
+            return false;
+        }else if($("#addr_detail").val() ==''){
+            $("#err_tip").show();
+            $("#err_content").html('请填写正确的详细地址');
+            return false;
+        }else {
+            $('#user-form').submit();
+        }
+    }
+
+
+</script>

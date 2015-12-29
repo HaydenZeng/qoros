@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Dangwu" basedir="." default="name">
+	<tstamp>
+		<format property="date" pattern="yyyy-MM-dd" locale="en,UK" />
+	</tstamp>
+	<property file="dev_${user.name}.properties" />
+	<property name="database.driver" value="com.mysql.jdbc.Driver" />
+	<property name="db.changelog.file" value="db/changelog/master.xml" />
+	<property name="prompt.user.if.not.local.database" value="true" />
+	<property name="php-executable" value="/usr/bin/php"></property>
+	<!-- Indicate if the database is for testing purpose. -->
+	<property name="test-db" value="false"></property>
+
+	<path id="classpath">
+		<fileset dir="ant">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement location="${basedir}" />
+	</path>
+
+	<target name="name">
+		<echo>Your user name is ${user.name}.</echo>
+	</target>
+
+	<filterset id="ant-filter" begintoken="@" endtoken="@"
+		onmissingfiltersfile="ignore">
+		<filtersfile file="dev_${user.name}.properties" />
+		<filter token="api.version" value="${api.version}" />
+		<filter token="andriod.version" value="${andriod.version}" />
+		<filter token="iphone.version" value="${iphone.version}" />
+
+		<filter token="app.prefix" value="${app.prefix}" />
+		<filter token="root.domain" value="${root.domain}" />
+	</filterset>
+
+	<target name="declare-site">
+		<condition property="database.prefix" value="${app.prefix}"
+			else="test_${app.prefix}">
+			<equals arg1="${test-db}" arg2="false" casesensitive="false"
+				trim="true" />
+		</condition>
+		<property name="database.host" value="${site.database.host}" />
+		<property name="database.user" value="${site.database.user}" />
+		<property name="database.password" value="${site.database.password}" />
+		<property name="database.sid" value="${site.database.sid}" />
+        <property name="site.database.prot" value="3306" /> <!--if already defined; no effect -->
+        <property name="database.port" value="${site.database.prot}" />
+    </target>
+
+	<target name="test-module">
+		<condition property="site">
+			<equals arg1="${database.sid}" arg2="site" />
+		</condition>
+	</target>
+
+	<target name="declare" depends="test-module, declare-site">
+		<echo>http://${database.host}:3306/${database.prefix}${database.sid}
+			${database.user} ${database.password}</echo>
+	</target>
+
+	<target name="create-database" depends="declare">
+		<echo>Create new databases and tables, in
+			${basedir}/createtable/${database.sid}</echo>
+		<exec dir="${basedir}/db" executable="${php-executable}">
+			<arg line="create.php" />
+			<arg line="${database.host}" />
+			<arg line="${database.user}" />
+			<arg line="${database.password}" />
+			<arg line="${database.sid}" />
+			<arg line="${database.prefix}" />
+			<arg line="0" />
+		</exec>
+	</target>
+	
+	<target name="create-database-test" depends="declare">
+		<echo>Create new databases and tables, in
+			${basedir}/createtable/${database.sid}</echo>
+		<exec dir="${basedir}/db" executable="${php-executable}">
+			<arg line="create.php" />
+			<arg line="${database.host}" />
+			<arg line="${database.user}" />
+			<arg line="${database.password}" />
+			<arg line="${database.sid}" />
+			<arg line="${database.prefix}test_" />
+			<arg line="1" />
+		</exec>
+	</target>
+
+	<target name="drop-database" depends="declare">
+		<echo>Drop the specified database, in ${basedir}/createtable/${database.sid}</echo>
+		<exec dir="${basedir}/db" executable="${php-executable}">
+			<arg line="drop.php" />
+			<arg line="${database.host}" />
+			<arg line="${database.user}" />
+			<arg line="${database.password}" />
+			<arg line="${database.sid}" />
+			<arg line="${database.prefix}" />
+		</exec>
+	</target>
+
+	<target name="database" depends="declare, create-database">
+		<property name="database.url"
+			value="jdbc:mysql://${database.host}:${database.port}/${database.prefix}${database.sid}?useUnicode=true&amp;characterEncoding=UTF-8" />
+
+		<fail unless="db.changelog.file">db.changelog.file not set</fail>
+		<fail unless="database.url">database.url not set</fail>
+		<fail unless="database.user">database.username not set</fail>
+		<fail unless="database.password">database.password not set</fail>
+
+		<echo>run liquibase update database on ${database.host},
+			${database.url} ${database.user} ${database.password}</echo>
+
+		<taskdef resource="liquibasetasks.properties">
+			<classpath refid="classpath" />
+		</taskdef>
+
+		<updateDatabase changeLogFile="${db.changelog.file}"
+			driver="${database.driver}" url="${database.url}" username="${database.user}"
+			password="${database.password}" promptOnNonLocalDatabase="${prompt.user.if.not.local.database}"
+			dropFirst="false" classpathref="classpath" />
+	</target>
+	
+	<target name="database-test" depends="declare, create-database-test">
+		<property name="database.url"
+			value="jdbc:mysql://${database.host}:${database.port}/${database.prefix}test_${database.sid}?useUnicode=true&amp;characterEncoding=UTF-8" />
+
+		<fail unless="db.changelog.file">db.changelog.file not set</fail>
+		<fail unless="database.url">database.url not set</fail>
+		<fail unless="database.user">database.username not set</fail>
+		<fail unless="database.password">database.password not set</fail>
+
+		<echo>run liquibase update database on ${database.host},
+			${database.url} ${database.user} ${database.password}</echo>
+
+		<taskdef resource="liquibasetasks.properties">
+			<classpath refid="classpath" />
+		</taskdef>
+
+		<updateDatabase changeLogFile="${db.changelog.file}"
+			driver="${database.driver}" url="${database.url}" username="${database.user}"
+			password="${database.password}" promptOnNonLocalDatabase="${prompt.user.if.not.local.database}"
+			dropFirst="YES" classpathref="classpath" />
+	</target>
+
+	<target name="refresh-database" depends="drop-database, database" />
+
+	<target name="setup">
+		<mkdir dir="${basedir}/../../public/upload" />
+		<mkdir dir="${basedir}/../../data/trash" />
+		<mkdir dir="${basedir}/../../data/log" />
+        <mkdir dir="${basedir}/../../data/DoctrineORMModule/Proxy" />
+		<chmod file="${basedir}/../../public/upload" perm="777" type="dir" />
+		<chmod file="${basedir}/../../data/trash" perm="777" type="dir" />
+		<chmod file="${basedir}/../../data/log" perm="777" type="dir" />
+		<chmod file="${basedir}/../../data/DoctrineORMModule/Proxy" perm="777" type="dir" />
+	</target>
+
+	<target name="refresh-all" depends="refresh-database, setup" />
+</project>

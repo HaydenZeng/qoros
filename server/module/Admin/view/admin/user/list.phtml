@@ -1,0 +1,135 @@
+<!-- End Navigation -->
+<div class="container-fluid main-content">
+    <!-- DataTables Example -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+                <div class="widget-content padded clearfix">
+
+                    <div class="heading">
+                        <i class="icon-table"></i>用户列表<br><br>
+                        <button id="import" class="btn btn-primary-outline pull-right" style="color: #000000;">导入</button>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <th>
+                            姓名
+                        </th>
+                        <th>
+                            手机号
+                        </th>
+                        <th>
+                            活动1
+                        </th>
+                        <th>
+                            活动2
+                        </th>
+                        <th>
+                            活动3
+                        </th>
+                        <th >
+                            活动4
+                        </th>
+                        </thead>
+                        <tbody>
+                        <?php foreach($paginator as $user):?>
+                            <tr>
+                                <input type="hidden" id="userId" value="<?php echo $user->id;?>" name="user">
+
+                                <td>
+                                    <a><?php echo $user->username;?></a>
+                                </td>
+                                <td>
+                                    <?php echo $user->mobile;?>
+                                </td>
+                                <td >
+                                    <?php echo ($user->is_luck_draw_1 == 0)?'否':'是';?>
+                                </td>
+                                <td >
+                                    <?php echo  ($user->is_luck_draw_2 == 0)?'否':'是';?>
+                                </td>
+                                <td >
+                                    <?php echo  ($user->is_luck_draw_3 == 0)?'否':'是';?>
+                                </td>
+                                <td >
+                                    <?php echo  ($user->is_luck_draw_4 == 0)?'否':'是';?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+
+                    <?php
+                    // add at the end of the file after the table
+                    echo $this->paginationControl(
+                        $this->paginator,
+                        'sliding',
+                        'admin/paginator.phtml',
+                        array(
+                            'route' => 'admin',
+                            'controller' =>'admin-user',
+                            'action' => 'list',
+                            'id'=>0
+                        )
+                    );
+                    ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+    $(function(){
+
+        $("#import").click(function(){
+            var html =  '<div class="fluid-height clearfix">'+
+                '<div class="widget-content padded">'+
+                '<form class="form-horizontal" id="import-form" method="post" action="/adm/admin-user/importUser" enctype="multipart/form-data">'+
+                '<div class="form-group">'+
+                '<label class="control-label col-md-3">用户列表文件:</label>'+
+                '<div class="col-md-8">'+
+                '<div class="fileupload fileupload-new" data-provides="fileupload"><input type="hidden">'+
+                '<div class="input-group">'+
+                '<div class="form-control">'+
+                '<i class="icon-file fileupload-exists"></i><span class="fileupload-preview"></span>'+
+                '</div>'+
+                '<div class="input-group-btn">'+
+                '<span class="btn btn-default btn-file">' +
+                '<span class="fileupload-new">选择文件</span>' +
+                '<span class="fileupload-exists">更换</span>' +
+                '<input type="file" name="userList">' +
+                '</span>'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '</form>'+
+                '</div>'+
+                '</div>';
+
+            showModal('导入用户列表', html, function(){
+                $('#import-form').ajaxSubmit({
+                    type: 'post',
+                    success: function(data) {
+                        if(data.status > 0){
+                            showModal('系统提示', data.message);
+                        } else {
+                            showModal('系统提示', '用户列表导入成功', function(){
+                                window.location.reload();
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    });
+
+</script>

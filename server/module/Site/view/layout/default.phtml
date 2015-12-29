@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" style="font-size: 58.59375px;">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" >
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <title><?php echo (isset($title)? $title:'观致汽车');?></title>
+
+
+    <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/image/favicon.ico'))
+        ->prependStylesheet($this->basePath() . '/css/wap-index.css');?>
+
+    <!-- Scripts -->
+    <?php echo $this->headScript()
+        ->prependFile($this->basePath() . '/js/base.js')
+        ->prependFile($this->basePath() . '/js/jweixin-1.0.0.js')
+        ->prependFile($this->basePath() . '/js/jquery.form.js')
+        ->prependFile($this->basePath() . '/js/jquery-1.7.1.js')
+    ; ?>
+
+
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if(clientWidth > 640){
+                        docEl.style.fontSize = '100px';
+                    }else{
+                        docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                    }
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+
+</head>
+
+    <body>
+        <div class="pp-container">
+            <?php echo $this->content; ?>
+            <?php echo $this->inlineScript(); ?>
+        </div>
+    </body>
+</html>

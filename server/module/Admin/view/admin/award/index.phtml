@@ -1,0 +1,117 @@
+<!-- End Navigation -->
+<div class="container-fluid main-content">
+    <!-- DataTables Example -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+                <div class="widget-content padded clearfix">
+
+                    <div class="heading">
+                        <i class="icon-table"></i>奖项设置<br><br>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <th width="10%">活动编号</th>
+                            <th width="20%">活动名称</th>
+                            <th width="20%">开始时间</th>
+                            <th width="20%">结束时间</th>
+                            <th>操作</th>
+                        </thead>
+                        <tbody>
+                        <?php foreach($activities as $activity) :?>
+                            <tr>
+                                <input type="hidden" id="activityId" value="<?php echo $activity->id;?>">
+
+                                <td><?php echo $activity->id;?></td>
+                                <td><?php echo $activity->title;?></td>
+                                <td id="start_time"><?php echo empty($activity->startTime) ? '' : $activity->startTime->format('Y-m-d');?></td>
+                                <td id="end_time"><?php echo empty($activity->endTime) ? '' : $activity->endTime->format('Y-m-d');?></td>
+                                <td>
+                                    <div id="btn1-box">
+                                        <?php if($activity->type == \Site\Entity\ActivityEntity::TYPE_DRAW){?>
+                                            <a href="/adm/admin-award/setAward/<?php echo $activity->id;?>">编辑奖项</a>
+                                        <?php }?>
+                                        <a class="btn-edit" style="margin-left: 10px;">设置时间</a>
+                                    </div>
+                                    <div id="btn2-box" style="display: none;">
+                                        <a class="btn-ok">确认</a>
+                                        <a class="btn-cancel">取消</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    var origin_start = '';
+    var origin_end = '';
+
+    $(function(){
+        $('.btn-edit').click(function(){
+            $(this).parent().hide();
+            $(this).parent().parent().find('#btn2-box').show();
+            var start_time = $(this).parent().parent().parent().find('#start_time').html();
+            var end_time = $(this).parent().parent().parent().find('#end_time').html();
+            origin_start = start_time;
+            origin_end = end_time;
+            $(this).parent().parent().parent().find('#start_time').html('<input id="input_start" ' +
+            'data-date-autoclose="true" class="form-control datepicker" type="text" value="'+start_time+'">');
+            $(this).parent().parent().parent().find('#end_time').html('<input id="input_end" ' +
+            'data-date-autoclose="true" class="form-control datepicker" type="text" value="'+end_time+'">');
+
+            $(this).parent().parent().parent().find('#input_start').datepicker({
+                format:'yyyy-mm-dd'
+            });
+            $(this).parent().parent().parent().find('#input_end').datepicker({
+                format:'yyyy-mm-dd'
+            });
+        });
+
+        $('.btn-cancel').click(function(){
+            hideEdit(this,origin_start,origin_end);
+        });
+
+        $('.btn-ok').click(function(){
+            var activityId = $(this).parent().parent().parent().find('#activityId').val();
+            var start_time = $(this).parent().parent().parent().find('#input_start').val();
+            var end_time = $(this).parent().parent().parent().find('#input_end').val();
+            var btn_cancel = $(this).parent().find('.btn-cancel');
+            $.ajax({
+                type: 'POST',
+                url: '/adm/admin-award/setActivityTime',
+                data: {
+                    activityId:activityId,
+                    start_time:start_time,
+                    end_time:end_time
+                },
+                dataType: "json",
+                success: function (data) {
+                    if(data.status > 0){
+                        showModal('系统提示',data.message);
+                    } else  {
+                        hideEdit(btn_cancel,start_time,end_time);
+                    }
+                }
+            });
+        });
+
+    });
+
+    function hideEdit(obj,start,end){
+        $(obj).parent().parent().find('#btn1-box').show();
+        $(obj).parent().hide();
+        $(obj).parent().parent().parent().find('#start_time').html(start);
+        $(obj).parent().parent().parent().find('#end_time').html(end);
+    }
+</script>

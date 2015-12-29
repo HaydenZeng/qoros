@@ -1,0 +1,113 @@
+<div class="ly-plate">
+    <input id="activityId" type="hidden" value="<?php echo $activityId;?>">
+    <div class="rotate-bg">
+
+    </div>
+    <div class="lottery-star" id="lotteryBtn"></div>
+</div>
+
+<div style="display:none;" class="overlay"></div>
+<div class="tk-box" style="display:none;">
+    <span class="close"></span>
+    <span id="ico" class="ico-01"></span>
+    <span id="jp" class="jp-06" style="display: none;"></span>
+    <p class="p-01"><span id="sp">奖品刚刚与您擦肩而过，</span><br/>欢迎您下期再来！</p>
+</div>
+
+<script src="/js/jQueryRotate.2.2.js"></script>
+<script src="/js/jquery.easing.min.js"></script>
+<script>
+    $(function(){
+        $('.close').click(function(){
+            $('.tk-box').hide();
+            $('.overlay').hide();
+        });
+
+        var timeOut = function(){  //超时函数
+            $(".rotate-bg").rotate({
+                angle:0,
+                duration: 10000,
+                animateTo: 2160, //这里是设置请求超时后返回的角度，所以应该还是回到最原始的位置，2160是因为我要让它转6圈，就是360*6得来的
+                callback:function(){
+                    alert('网络超时')
+                }
+            });
+        };
+        var rotateFunc = function(award,angle,text,img){  //awards:奖项，angle:奖项对应的角度
+            $('.rotate-bg').stopRotate();
+            $(".rotate-bg").rotate({
+                angle:0,
+                duration: 5000,
+                animateTo: angle+1440, //angle是图片上各奖项对应的角度，1440是我要让指针旋转4圈。所以最后的结束的角度就是这样子^^
+                callback:function(){
+                    $('#sp').html(text);
+                    if(img != 'none'){
+                        $('#ico').attr('class', 'ico-01');
+                        $('#jp').attr('class', img);
+                        $('#jp').show();
+                    } else {
+                        $('#ico').attr('class', 'ico-02');
+                        $('#jp').hide();
+                    }
+                    $('.tk-box').show();
+                    $('.overlay').show();
+                }
+            });
+        };
+
+        $("#lotteryBtn").rotate({
+            bind:
+            {
+                click: function(){
+                    //后台随机奖品
+                    $.ajax({
+                        type: 'POST',
+                        url: '/prize/RandAward',
+                        data: {activityId:$('#activityId').val()},
+                        dataType: "json",
+                        success: function (data) {
+                            if(data.status > 0){
+                                $('#sp').html(data.message + ',');
+                                $('#ico').attr('class', 'ico-02');
+                                $('#jp').hide();
+                                $('.tk-box').show();
+                                $('.overlay').show();
+                            } else {
+                                var item = data.content[0];
+                                if(item==1){
+                                    rotateFunc(1,0,'恭喜您获得&nbsp;<em>车用iPad支架，</em>','jp-03')
+                                }
+                                if(item==7){
+                                    rotateFunc(7,40,'奖品刚刚与您擦肩而过，','none')
+                                }
+                                if(item==2){
+                                    rotateFunc(2,80,'恭喜您获得&nbsp;<em>1:43观致车模，</em>','jp-02')
+                                }
+                                if(item==3){
+                                    rotateFunc(3,120,'恭喜您获得&nbsp;<em>便携式电子保温箱，</em>','jp-01')
+                                }
+                                if(item==8){
+                                    rotateFunc(8,160,'奖品刚刚与您擦肩而过，','none')
+                                }
+                                if(item==4){
+                                    rotateFunc(4,200,'恭喜您获得&nbsp;<em>运动手机包，</em>','jp-06')
+                                }
+                                if(item==5){
+                                    rotateFunc(5,240,'恭喜您获得&nbsp;<em>多功能逃生手电，</em>','jp-05')
+                                }
+                                if(item==9){
+                                    rotateFunc(9,280,'奖品刚刚与您擦肩而过，','none')
+                                }
+                                if(item==6){
+                                    rotateFunc(6,320,'恭喜您获得&nbsp;<em>车用颈枕，</em>','jp-04')
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+
+        });
+
+    })
+</script>
