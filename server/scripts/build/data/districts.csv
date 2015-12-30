@@ -3721,8 +3721,8 @@ code,district,short,parent_code,pinyin,parent_id
 820000,澳门特别行政区,澳,0,aomentebiexingzhengqu,null
 820100,澳门半岛,,820000,aomenbandao,3720
 820200,离岛,,820000,lidao,3720
-310200,上海石楠路,,310000,shanghaishinanlu,null
-310300,上海浦西,,310000,shanghaipuxi,null
-310400,上海浦东,,310000,shanghaipudong,null
-321400,邳州,,320000,pizhou,null
-321500,邳州,,320000,pizhou,null
+310200,上海石楠路,,310000,shanghaishinanlu,889
+310300,上海浦西,,310000,shanghaipuxi,889
+310400,上海浦东,,310000,shanghaipudong,889
+321400,邳州,,320000,pizhou,912
+321500,常熟市,,320000,changshushi,912
