@@ -38,7 +38,8 @@ class Module {
         $redirectUri = $e->getRequest()->getRequestURI();
         $redirectUri = urlencode($redirectUri);
         $strategy = new RedirectionStrategy();
-        $strategy->setRedirectUri('/user/unauthorized?redirect='.$redirectUri);
+//        $strategy->setRedirectRoute('user',array('action'=>'unauthorized'),array('query'=>array('redirect'=>$redirectUri)));
+        $strategy->setRedirectUri('/qoros/user/unauthorized?redirect='.$redirectUri);
         $eventManager->attach($strategy);
 
 

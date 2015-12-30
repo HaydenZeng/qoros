@@ -48,7 +48,7 @@ class UserController extends \Site\Controller\UserController {
         $page = $this->getEvent()->getRouteMatch()->getParam('page', 1);
         $size = $this->getEvent()->getRouteMatch()->getParam('size', 10);
         if(!$user || $user->role != UserEntity::ROLE_ADMIN){
-            return $this->redirect()->toUrl('/admin/admin-user/login');
+            return $this->redirect()->toUrl('/qoros/admin/admin-user/login');
         }
 
         $paginator = $this->userModel->getUsers(null,$page,$size);
@@ -87,7 +87,6 @@ class UserController extends \Site\Controller\UserController {
 
         }
         $view = new ViewModel();
-        $view->setVariables(array('test'=>'test123'));
         return $view;
     }
 
@@ -117,7 +116,7 @@ class UserController extends \Site\Controller\UserController {
             }catch (\Exception $e) {
                 $this->flashMessenger()->addErrorMessage($e->getMessage());
             }
-            return $this->redirect()->toUrl('/adm/admin-user/login');
+            return $this->redirect()->toUrl('/qoros/adm/admin-user/login');
         }
 
         //toroute 跳转过来带的参数

@@ -120,7 +120,7 @@ class UserController extends BaseController{
             $user->addr_detail =  $data['addr_detail'];
             $user->postcode = $data['postcode'];
             $this->userModel->updateUserInfo($user);
-            return $this->redirect()->toUrl('/');
+            return $this->redirect()->toUrl('/qoros/');
 //            return new UnifyJsonModel();
         }
 

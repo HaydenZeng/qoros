@@ -91,7 +91,8 @@
         $("#import").click(function(){
             var html =  '<div class="fluid-height clearfix">'+
                 '<div class="widget-content padded">'+
-                '<form class="form-horizontal" id="import-form" method="post" action="/adm/admin-user/importUser" enctype="multipart/form-data">'+
+                '<form class="form-horizontal" id="import-form" method="post" ' +
+                'action="/qoros/adm/admin-user/importUser" enctype="multipart/form-data">'+
                 '<div class="form-group">'+
                 '<label class="control-label col-md-3">用户列表文件:</label>'+
                 '<div class="col-md-8">'+
