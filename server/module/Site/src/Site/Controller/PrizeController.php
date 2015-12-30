@@ -13,6 +13,8 @@ use Common\View\UnifyJsonModel;
 use Site\Entity\UserEntity;
 use Site\Entity\WinEntity;
 use Site\Model\Award;
+use Wechat\Entity\WechatMessageEntity;
+use Wechat\Model\Wechat;
 use Zend\View\Model\ViewModel;
 use Site\Model\User;
 
@@ -27,9 +29,15 @@ class PrizeController extends BaseController{
      */
     protected $userModel;
 
-    public function __construct(Award $awardModel, User $userModel) {
+    /**
+     * @var Wechat
+     */
+    public $wechat;
+
+    public function __construct(Award $awardModel, User $userModel ,Wechat $wechatModel) {
         $this->awardModel = $awardModel;
         $this->userModel = $userModel;
+        $this->wechat = $wechatModel;
     }
 
     public function indexAction() {
@@ -76,7 +84,7 @@ class PrizeController extends BaseController{
                 $randArr[] = $item->goods->id;
             }
         }
-        if(count($randArr) == 0){
+        if(count($randArr) == 0){//没有中奖
             $randArr[] = 7;
             $randArr[] = 8;
             $randArr[] = 9;
@@ -95,6 +103,12 @@ class PrizeController extends BaseController{
             $win->user = $this->identity()->id;
             $win->activityId = $activityId;
             $this->awardModel->saveWin($win);
+
+            $data = array('first'=>'恭喜您参与的活动中奖了！','keyword1'=>'幸运转盘大抽奖','keyword2'=>$item->goods->name,
+                'remark'=>'感谢您的参与。');
+            $tplId = WechatMessageEntity::TEMPLATE_LUCKY_DRAW;
+            $this->wechat->sendTemplateMessage($user->open_id, $tplId, $data);
+
         } else {
             //添加到中奖列表
             $win = new WinEntity();

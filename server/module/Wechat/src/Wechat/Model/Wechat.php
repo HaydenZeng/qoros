@@ -329,39 +329,7 @@ class Wechat
     }
 
 
-    /**
-     * 发送模版消息
-     * KwKlsXv9P2SjwGqXYJx_Gvscig0YqR49HxwyDkyJ3sw
-     */
-    public function sendBindSuccessMessage($user,$openid){
-        if(DW_ENV_DEBUG){
-            $template = '-mL-4Jw-BdTGIdvgu_98Zi-R5_Cq_NpSLWtoSmS8TN4';
-        }else{
-            $template = 'KwKlsXv9P2SjwGqXYJx_Gvscig0YqR49HxwyDkyJ3sw';
-        }
-        $arr_data = array(
-            'touser'=>"{$openid}",
-            'template_id'=>"{$template}",
-            'data'=>array(
-                'first'=>array(
-                    'value'=>'恭喜您成功绑定微信服务号'
-                ),
-                'keyword1'=>array(
-                    'value'=>$user->name,
-                ),
-                'keyword2'=>array(
-                    'value'=>'e财会会员',
-                ),
-                'keyword3'=>array(
-                    'value'=>date('Y-m-d H:i'),
-                ),
-                'remark'=>array(
-                    'value'=>$this->getFastKeyText()
-                ),
-            )
-        );
-        $this->wechatUtil->sendTemplateMessage($arr_data);
-    }
+
 
     public function getRevEvent(){
         return $this->wechatUtil->getRevEvent();
@@ -405,67 +373,6 @@ class Wechat
 
 
 
-    /**
-     * 发送绑定消息
-     */
-    public function sendBindMessage($openId,$title,$content,$type='系统通知'){
-        $data = array(
-            'first'=>$title,
-            'keyword1'=>$type,
-            'keyword2'=>date('Y-m-d'),
-            'remark'=>$content
-        );
-        $this->sendTemplateMessage($openId,WechatMessageEntity::TEMPLATE_NORMAL,$data);
-        return $data;
-    }
-
-    /**
-     * 发送普通系统消息
-     */
-    public function sendNormalMessage($openId,$title,$content,$href){
-        $data = array(
-            'first'=>$title,
-            'keyword1'=>"系统通知",
-            'keyword2'=>date('Y-m-d'),
-            'remark'=>$content
-        );
-        $this->sendTemplateMessage($openId,WechatMessageEntity::TEMPLATE_NORMAL,$data,$href);
-        return $data;
-    }
-
-
-    /**
-     * 发送给寄送者消息
-     */
-    public function sendToSendMessage($openId,$title,$expressCompany,$expressNumber,$sendTime,$content,$remark,$href){
-        $data = array(
-            'first'=>$title,
-            'keyword1'=>$expressCompany,
-            'keyword2'=>$expressNumber,
-            'keyword3'=>$sendTime,
-            'keyword4'=>$content,
-            'remark'=>$remark
-        );
-        $this->sendTemplateMessage($openId,WechatMessageEntity::TEMPLATE_SEND,$data,$href);
-        return $data;
-    }
-
-
-    /**
-     * 发送接收者消息
-     */
-    public function sendToReceiveMessage($openId,$title,$expressCompany,$expressNumber,$sendTime,$content,$remark,$href){
-        $data = array(
-            'first'=>$title,
-            'keyword1'=>$expressCompany,
-            'keyword2'=>$expressNumber,
-            'keyword3'=>$sendTime,
-            'keyword4'=>$content,
-            'remark'=>$content
-        );
-        $this->sendTemplateMessage($openId,WechatMessageEntity::TEMPLATE_SEND,$data,$href);
-        return $data;
-    }
 
     /**
      * js Sign

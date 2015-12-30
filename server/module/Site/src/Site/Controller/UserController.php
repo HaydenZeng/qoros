@@ -44,6 +44,14 @@ class UserController extends BaseController{
     }
 
     /**
+     * 用户协议：免责声明
+     */
+    public function agreementAction(){
+        $view = new ViewModel();
+        return $view;
+    }
+
+    /**
      * 用户通过手机号来注册
      */
     public function registerAction(){
