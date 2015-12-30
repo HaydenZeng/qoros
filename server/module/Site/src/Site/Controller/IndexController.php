@@ -69,7 +69,7 @@ class IndexController extends BaseController{
      */
     public function indexAction() {
         $user = $this->authentication()->getIdentity();
-        if(!$user || !$user->open_id){
+        if(!$user){
             return $this->redirect()->toRoute('user',array('action'=>'agreement'));
         }
 
