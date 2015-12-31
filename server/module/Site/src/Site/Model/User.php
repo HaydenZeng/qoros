@@ -85,9 +85,9 @@ class User extends Model {
             $user->creator = $this->getEntityManager()->getReference('Site\Entity\UserEntity', $user->creator);
         }
         try {
-            $this->getEntityManager()->getConnection()->beginTransaction();
+//            $this->getEntityManager()->getConnection()->beginTransaction();
             $user = $this->saveUser($user);
-            $this->getEntityManager()->commit();
+//            $this->getEntityManager()->commit();
             return $user;
         } catch (\Exception $e) {
             $this->getEntityManager()->rollback();
@@ -102,14 +102,14 @@ class User extends Model {
      */
     public function batchCreateUsers(array $users){
         try {
-            $this->getEntityManager()->getConnection()->beginTransaction();
+//            $this->getEntityManager()->getConnection()->beginTransaction();
             foreach ($users as $user) {
                 /**
                  * @var \Site\Entity\UserEntity $user
                  */
                 $this->createUser($user);
             }
-            $this->getEntityManager()->commit();
+//            $this->getEntityManager()->commit();
             return true;
         }catch (\Exception $e) {
             $this->getEntityManager()->rollback();
@@ -162,7 +162,7 @@ class User extends Model {
                 $user->created = new \DateTime('now');
             }
             if ($this->findByMobile($user->mobile)) {
-                return $this->findByMobile($user->mobile);
+                return true;
 //                throw new BusinessException("手机号已经存在", 1037);
             }
             if (!isset($user->role)) {
