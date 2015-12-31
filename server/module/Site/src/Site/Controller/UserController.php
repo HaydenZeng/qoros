@@ -69,8 +69,7 @@ class UserController extends BaseController{
         if(parent::isWeixin() && !$request->isPost()){
             $code = $this->getParam('code', false);
             if(!$code){
-                $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME']
-                    .'/qoros/user/completeInfo');
+                $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME'].'/qoros/user/register');
                 return $this->redirect()->toUrl($redirectUrl);
             }
             $tokenData = $this->wechat->getOauthData();

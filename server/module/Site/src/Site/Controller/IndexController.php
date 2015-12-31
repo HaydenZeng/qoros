@@ -88,7 +88,6 @@ class IndexController extends Controller{
             }
         }
 
-
         $user = $this->authentication()->getIdentity();
         if(!$user){
             return $this->redirect()->toRoute('user',array('action'=>'register'));
@@ -229,5 +228,28 @@ class IndexController extends Controller{
         $url = 'http://'.$_SERVER['HTTP_HOST'].'/qoros/img/share_image.png';
         $view->setVariables(array('jsSign'=>$jsSign,'url'=>$url));
         return $view;
+    }
+
+    /**
+     * 登陆
+     * @param $name
+     * @param $pwd
+     * @param bool $checkPassword
+     * @return \Zend\Authentication\Result
+     */
+    protected function login($name ,$pwd, $checkPassword = true){
+        $authService = $this->authentication()->getAuthService();
+        $authService->clearIdentity();
+
+        $authAdapter = $this->authentication()->getAuthAdapter();
+        $authAdapter->setUsername($name);
+        $authAdapter->setPassword($pwd);
+        //when social login,pass check password
+        $authAdapter->setCheckPassword($checkPassword);
+
+        $result = $authService->authenticate();
+        //reset check password
+        $authAdapter->setCheckPassword(true);
+        return $result;
     }
 }
