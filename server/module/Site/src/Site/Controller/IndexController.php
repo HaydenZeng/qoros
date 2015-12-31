@@ -8,6 +8,7 @@
  */
 namespace Site\Controller;
 
+use Common\Controller\Controller;
 use Common\View\UnifyJsonModel;
 use Site\Entity\ShareEntity;
 use Site\Entity\UserEntity;
@@ -18,7 +19,7 @@ use Wechat\Model\Wechat;
 use Zend\View\Model\ViewModel;
 use Site\Model\User;
 
-class IndexController extends BaseController{
+class IndexController extends Controller{
 
     /**
      * @var User
@@ -68,6 +69,26 @@ class IndexController extends BaseController{
      * @return \Zend\Http\Response|ViewModel
      */
     public function indexAction() {
+
+        //自动登陆
+        $request = $this->getRequest();
+        if(parent::isWeixin() && !$request->isPost()){
+            $code = $this->getParam('code', false);
+            if(!$code){
+                $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME'].'/qoros/index/index');
+                return $this->redirect()->toUrl($redirectUrl);
+            }
+            $tokenData = $this->wechat->getOauthData();
+            $user = $this->userModel->getByOpenId($tokenData['openid']);
+            if($user){
+                $result = $this->login($user->mobile, null, false);
+                if ($result->getCode() == Result::SUCCESS && $user->username != $user->openid) {
+                    return $this->redirect()->toUrl('/qoros');
+                }
+            }
+        }
+
+
         $user = $this->authentication()->getIdentity();
         if(!$user){
             return $this->redirect()->toRoute('user',array('action'=>'register'));
@@ -156,6 +177,10 @@ class IndexController extends BaseController{
      */
     public function logShareAction(){
         $user = $this->authentication()->getIdentity();
+        if(!$user){
+            //如果用户不存在，则说明是普通人转发，不记录任消息
+            return new UnifyJsonModel();
+        }
         $activityId = $this->getParam('activityId',false);
         if(!$activityId){
             return new UnifyJsonModel();
@@ -175,6 +200,26 @@ class IndexController extends BaseController{
      *
      */
     public function huanyingxinAction(){
+
+        //自动登陆
+        $request = $this->getRequest();
+        if(parent::isWeixin() && !$request->isPost()){
+            $code = $this->getParam('code', false);
+            if(!$code){
+                $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME'].'/qoros/index/huanyingxin');
+                return $this->redirect()->toUrl($redirectUrl);
+            }
+            $tokenData = $this->wechat->getOauthData();
+            $user = $this->userModel->getByOpenId($tokenData['openid']);
+            if($user){
+                $result = $this->login($user->mobile, null, false);
+                if ($result->getCode() == Result::SUCCESS && $user->username != $user->openid) {
+//                    return $this->redirect()->toUrl('/qoros');
+                }
+            }
+        }
+
+
         $view = new ViewModel();
         // 注意 URL 一定要动态获取，不能 hardcode.
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
