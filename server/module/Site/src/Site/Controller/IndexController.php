@@ -70,20 +70,23 @@ class IndexController extends Controller{
      */
     public function indexAction() {
 
-        //自动登陆
-        $request = $this->getRequest();
-        if(parent::isWeixin() && !$request->isPost()){
-            $code = $this->getParam('code', false);
-            if(!$code){
-                $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME'].'/qoros/index/index');
-                return $this->redirect()->toUrl($redirectUrl);
-            }
-            $tokenData = $this->wechat->getOauthData();
-            $user = $this->userModel->getByOpenId($tokenData['openid']);
-            if($user){
-                $result = $this->login($user->mobile, null, false);
-                if ($result->getCode() == Result::SUCCESS && $user->username != $user->openid) {
-                    return $this->redirect()->toUrl('/qoros');
+        $user = $this->authentication()->getIdentity();
+        if(!$user){
+            //自动登陆
+            $request = $this->getRequest();
+            if(parent::isWeixin() && !$request->isPost()){
+                $code = $this->getParam('code', false);
+                if(!$code){
+                    $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME'].'/qoros/index/index');
+                    return $this->redirect()->toUrl($redirectUrl);
+                }
+                $tokenData = $this->wechat->getOauthData();
+                $user = $this->userModel->getByOpenId($tokenData['openid']);
+                if($user){
+                    $result = $this->login($user->mobile, null, false);
+                    if ($result->getCode() == Result::SUCCESS && $user->username != $user->openid) {
+                        return $this->redirect()->toUrl('/qoros');
+                    }
                 }
             }
         }
