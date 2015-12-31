@@ -196,7 +196,8 @@ class IndexController extends Controller{
             $this->share->save($share);
 
             //send share message
-            $data = array('first'=>'活动分享通知','keyword1'=>'暖心活动分享','keyword2'=>"{date('Y-m-d H:i')}",'keyword3'=>'完成',
+            $time_str = date('Y-m-d H:i');
+            $data = array('first'=>'活动分享通知','keyword1'=>'暖心活动分享','keyword2'=>"{$time_str}",'keyword3'=>'完成',
                 'remark'=>'敬爱的车主，恭喜您成功完成“暖心计划”首个神秘任务！我们将会为您寄出观致汽车暖心礼包。为便于礼物顺利到达您的手中，请务必核对手机首次注册时所填写的地址是否正确。如有变动，可联系观致小Q进行更改。再次感谢您对观致汽车“暖心计划”的支持，祝您生活愉快。');
             $tplId = WechatMessageEntity::TEMPLATE_FINISH_SHARE;
             $this->wechat->sendTemplateMessage($user->open_id, $tplId, $data);
