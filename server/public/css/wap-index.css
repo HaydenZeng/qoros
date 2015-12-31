@@ -191,3 +191,9 @@ a {
 .statement .box .checkbox-out label{ float:left; font-size:0.22rem;  color:#808080; cursor:pointer; margin-left:0.12rem;}
 .statement .box .submit{ float:left; width:5.22rem; height:0.6rem; line-height:0.6rem; background:#bfbfbf; font-size:0.28rem; color:#fff; text-align:center;margin-top:0.2rem;}
 .statement .box .submit-active{ background:#86014b;}
+
+.zs-01{float:left; width:6.4rem; height:11.38rem; background:url(../img/q501.jpg) 0 0 no-repeat; background-size:100% auto;}
+.zs-02{float:left; width:6.4rem; height:11.38rem; background:url(../img/q502.jpg) 0 0 no-repeat; background-size:100% auto;}
+.zs-03{float:left; width:6.4rem; height:10.46rem; background:url(../img/q503.jpg) 0 0 no-repeat; background-size:100% auto;}
+.zs-03 img{ float:left; width:2.43rem; height:2.5rem; margin-top:6.33rem; margin-left:2.07rem;}
+.zs-03 p{ text-align:center; display:inline-block; font-size:0.24rem; color:#848484; font-weight: bold; width:5.8rem; padding:0 0.3rem; margin-top:0.2rem;}

@@ -23,7 +23,7 @@ return array(
                 array('name' => '预约试驾', 'type' => 'view', 'url' => 'http://www.qoros.com/test_drive/?utm_medium=wechat'),
             )),
             array('name' => '最新活动', 'sub_button' => array(
-                array('name' => '观致5-暖心计划', 'type' => 'view', 'url' => 'http://qoroswechat.chinacloudapp.cn/website/q5.html'),
+                array('name' => '观致5-暖心计划', 'type' => 'view', 'url' => 'http://qwechat.chinacloudapp.cn/qoros/user/agreement'),
                 array('name' => '观致5-任性计划', 'type' => 'view', 'url' => 'http://qoroswechat.chinacloudapp.cn/frontend/web/index.php?r=site/order'),
             )),
         ),
