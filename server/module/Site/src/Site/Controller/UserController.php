@@ -59,29 +59,30 @@ class UserController extends BaseController{
      * 用户通过手机号来注册
      */
     public function registerAction(){
+        $view = new ViewModel();
+        $request = $this->getRequest();
         $user = $this->authentication()->getIdentity();
         if($user){
             return $this->redirect()->toUrl('/qoros');
-        }
-        $view = new ViewModel();
-        $request = $this->getRequest();
-        //get user info
-        if(parent::isWeixin() && !$request->isPost()){
-            $code = $this->getParam('code', false);
-            if(!$code){
-                $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME']
-                    .'/qoros/user/completeInfo');
-                return $this->redirect()->toUrl($redirectUrl);
-            }
-            $tokenData = $this->wechat->getOauthData();
-            $user = $this->userModel->getByOpenId($tokenData['openid']);
-            if($user){
-                $result = $this->login($user->mobile, null, false);
-                if ($result->getCode() == Result::SUCCESS && $user->username != $user->openid) {
-                    return $this->redirect()->toUrl('/qoros');
+        }else{
+            //get user info
+            if(parent::isWeixin() && !$request->isPost()){
+                $code = $this->getParam('code', false);
+                if(!$code){
+                    $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME']
+                        .'/qoros/user/completeInfo');
+                    return $this->redirect()->toUrl($redirectUrl);
                 }
+                $tokenData = $this->wechat->getOauthData();
+                $user = $this->userModel->getByOpenId($tokenData['openid']);
+                if($user){
+                    $result = $this->login($user->mobile, null, false);
+                    if ($result->getCode() == Result::SUCCESS && $user->username != $user->openid) {
+                        return $this->redirect()->toUrl('/qoros');
+                    }
+                }
+                $view->setVariables(array('openid'=>$tokenData['openid']));
             }
-            $view->setVariables(array('openid'=>$tokenData['openid']));
         }
 
         if ($request->isPost()) {
