@@ -180,7 +180,9 @@ class IndexController extends BaseController{
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $href = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $jsSign = $this->wechat->getJsSign($href);
-        $view->setVariables(array('jsSign'=>$jsSign));
+
+        $url = 'http://'.$_SERVER['HTTP_HOST'].'/qoros/img/share_image.png';
+        $view->setVariables(array('jsSign'=>$jsSign,'url'=>$url));
         return $view;
     }
 }
