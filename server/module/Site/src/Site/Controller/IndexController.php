@@ -179,6 +179,7 @@ class IndexController extends BaseController{
         // 注意 URL 一定要动态获取，不能 hardcode.
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $href = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        echo $href;
         $jsSign = $this->wechat->getJsSign($href);
         $view->setVariables(array('jsSign'=>$jsSign));
         return $view;
