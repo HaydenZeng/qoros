@@ -162,7 +162,8 @@ class User extends Model {
                 $user->created = new \DateTime('now');
             }
             if ($this->findByMobile($user->mobile)) {
-                throw new BusinessException("手机号已经存在", 1037);
+                return $this->findByMobile($user->mobile);
+//                throw new BusinessException("手机号已经存在", 1037);
             }
             if (!isset($user->role)) {
                 $user->role = UserEntity::ROLE_USER;
