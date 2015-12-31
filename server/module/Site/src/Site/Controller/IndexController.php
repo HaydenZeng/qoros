@@ -70,7 +70,7 @@ class IndexController extends BaseController{
     public function indexAction() {
         $user = $this->authentication()->getIdentity();
         if(!$user){
-            return $this->redirect()->toRoute('user',array('action'=>'agreement'));
+            return $this->redirect()->toRoute('user',array('action'=>'register'));
         }
 
         if(isset($user) && $user->role == UserEntity::ROLE_ADMIN){

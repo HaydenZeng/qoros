@@ -140,7 +140,7 @@ class UserController extends BaseController{
     public function logoutAction(){
         $authService = $this->authentication()->getAuthService();
         $authService->clearIdentity();
-        return $this->redirect()->toRoute('user',array('action'=>'agreement'));
+        return $this->redirect()->toRoute('user',array('action'=>'register'));
     }
 
     /**

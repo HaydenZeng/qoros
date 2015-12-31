@@ -1,4 +1,79 @@
-<div class="register-01">
+<div class="statement" id="div_agreement">
+    <div class="box">
+        <h3>免责声明</h3>
+        <div class="in-box">
+            <dl>
+                <dt></dt>
+                <dd>观致汽车因活动要求提供的个人资料，如：您的姓名、住址、手机号码等，当您填写这些信息则表明，您接受观致汽车出于注册、验证、信息告知等目的，通过手机号码与您取得联络。在未经您同意的情况下，观致汽车不会将您的上述资料以任何方式泄露给与活动无关的任何一方。但是，当政府司法机关依照法定程序要求观致汽车披露个人资料时，观致汽车将根据执法单位之要求或为公共安全之目的提供个人资料且不承担任何责任。</dd>
+            </dl>
+
+            <dl>
+                <dt></dt>
+                <dd>当个人资料因下述任一情形而泄露时，观致汽车均得免责：<br />(i)由于中奖者将个人资料、中奖信息告知他人由此导致的任何个人资料泄露以致无法兑奖；<br />(ii)由于网络问题、黑客攻击、计算机病毒侵袭、因政府管制而造成的暂时性关闭等影响网络正常运行的情形而造成的个人资料泄露、丢失、被盗用或被篡改等情形；<br />(iii)由于与观致汽车链接的其它网站采用非正常的技术手段所造成之个人资料泄露。</dd>
+            </dl>
+            <dl>
+                <dt></dt>
+                <dd>如果由于您自身主观过错或恶意，不按正常流程操作、填写信息不真实、不完整等类似情形致使获奖无效、无法核验用户真实信息而不能获取奖品的，观致汽车免除给付奖品的责任。</dd>
+            </dl>
+            <dl>
+                <dt></dt>
+                <dd>鉴于互联网之特殊性质，活动期间若发生黑客攻击、因政府管制而造成的暂时性关闭等影响网络正常运行、电信部门技术调整导致重大影响、计算机病毒侵袭、网络故障或其他网络设备或技术提供商的服务延迟、服务障碍或任何其他类似事件，致使活动无法正常进行的，观致汽车因此免责；由此造成的非正常获奖无效。</dd>
+            </dl>
+            <dl>
+                <dt></dt>
+                <dd>由于恶意攻击或篡改致使中奖发生错误的，观致汽车不负任何责任，中奖信息数据以观致汽车公布的信息为准。</dd>
+            </dl>
+            <dl>
+                <dt></dt>
+                <dd>观致汽车不承担与奖品相关的任何税费。您应按中国法律之规定，自行承担。</dd>
+            </dl>
+            <dl>
+                <dt></dt>
+                <dd>凡登陆活动网站参加本次活动的，视为自愿接受本免责声明的约束。</dd>
+            </dl>
+        </div>
+        <div class="checkbox-out" id="div_check" onclick="clickCheck(this)">
+            <span class="ico"></span>
+            <label>我同意以上条款</label>
+        </div>
+        <a class="submit submit-active" onclick="goToRegister()">确认</a>
+    </div>
+
+</div>
+
+<script>
+    function clickCheck(obj){
+        if($(obj).hasClass("checkbox-active")){
+            $(obj).removeClass("checkbox-active")
+        }else{
+            $(obj).addClass("checkbox-active")
+        };
+    }
+
+    function goToRegister(){
+        if($("#div_check").hasClass('checkbox-active')){
+            $("#div_agreement").hide();
+            $("#div_register").show();
+        }else{
+            alert('请先同意条款');
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="register-01" id="div_register" style="display: none;">
     <div class="box">
         <h3>进入观致5 SUV“暖心计划”</h3>
         <div class="input-box">
