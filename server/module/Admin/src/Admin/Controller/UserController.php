@@ -106,7 +106,7 @@ class UserController extends \Site\Controller\UserController {
                 $result = $this->login($mobile, $password);
                 switch ($result->getCode()) {
                     case Result::SUCCESS:
-                        return $this->redirect()->toUrl('/adm');
+                        return $this->redirect()->toUrl('/qoros/adm');
                     default:
                         throw new BusinessException('用户名或密码错误');
                 }
