@@ -40,10 +40,10 @@ class IndexController extends \Site\Controller\IndexController
         $this->wechat->valid();//明文或兼容模式可以在接口验证通过后注释此句，但加密模式一定不能注释，否则会验证失败
 
         //用户关注回复
-//        $type = $this->wechat->getRevType();
-//        if($type == Wechat::MSGTYPE_EVENT){
+        $type = $this->wechat->getRevType();
+        if($type == Wechat::MSGTYPE_EVENT){
 //            $this->doEvent();
-//        }
+        }
 //        $openId = $this->wechat->getOpenId();
 //        if($type == Wechat::MSGTYPE_TEXT ||$type == Wechat::MSGTYPE_IMAGE ||$type == Wechat::MSGTYPE_VOICE){
 //            $this->checkUserLogin($openId);
@@ -51,7 +51,6 @@ class IndexController extends \Site\Controller\IndexController
         //转发消息给多客服
 //        $this->wechat->transfer_customer_service();
         $view->result = '';
-        $this->wechat->textReply('');
         return $view;
     }
 
