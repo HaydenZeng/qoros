@@ -15,13 +15,11 @@ use Site\Controller\BaseController;
 use Site\Controller\Result;
 use Site\Entity\MessagesLogEntity;
 use Site\Entity\UserPackageEntity;
-use Site\Model\Activity;
 use Site\Model\District;
 use Site\Model\GiftList;
 use Site\Model\Messages;
 use Site\Entity\UserAddressEntity;
 use Site\Model\GiftPackage;
-use Site\Model\Share;
 use Wechat\Entity\WechatMessageEntity;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
@@ -29,7 +27,7 @@ use Site\Entity\UserEntity;
 use Site\Entity\ProfileEntity;
 use Site\Model\User;
 
-class UserController extends Controller {
+class UserController extends \Site\Controller\UserController {
 
     /**
      * @var User
@@ -39,26 +37,6 @@ class UserController extends Controller {
      * @var District
      */
     public $districtModel;
-    /**
-     * @var Share
-     */
-    public $share;
-
-
-    /**
-     * @var Activity
-     */
-    public $activity;
-
-
-    public function __construct(Wechat $wechatModel ,User $userModel,
-                                District $district,Share $share,Activity $activity) {
-        $this->wechat = $wechatModel;
-        $this->userModel = $userModel;
-        $this->districtModel = $district;
-        $this->share = $share;
-        $this->activity = $activity;
-    }
 
 
     /**
