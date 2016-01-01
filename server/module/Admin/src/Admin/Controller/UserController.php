@@ -40,6 +40,18 @@ class UserController extends \Site\Controller\UserController {
 
 
     /**
+     *用户首页
+     */
+    public function indexAction(){
+        $user = $this->authentication()->getIdentity();
+        if(!$user || $user->role != UserEntity::ROLE_ADMIN){
+            return $this->redirect()->toUrl('/qoros/admin/admin-user/login');
+        }
+
+        return $this->redirect()->toUrl('/qoros/adm/admin-user/list');
+    }
+
+    /**
      * 用户列表
      * @return \Zend\Http\Response|ViewModel
      */
