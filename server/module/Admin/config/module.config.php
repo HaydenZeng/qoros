@@ -5,7 +5,7 @@ return array (
             'BjyAuthorize\Guard\Controller' => array(
                 ['controller' => ['admin-index'], 'roles' => ['admin']],
                 ['controller' => ['admin-user'], 'action' => ['login','importUser'],'roles' => ['guest']],
-                ['controller' => ['admin-user'], 'action' => ['index','list'],'roles' => ['admin']],
+                ['controller' => ['admin-user'], 'action' => ['index','list','shareList'],'roles' => ['admin']],
                 ['controller' => ['admin-goods'], 'roles' => ['admin']],
                 ['controller' => ['admin-award'], 'roles' => ['admin']]
             ),

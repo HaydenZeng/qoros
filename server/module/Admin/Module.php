@@ -34,7 +34,9 @@ class Module
                     $wechat = $sm->getServiceLocator()->get('Wechat\Model\Wechat');
                     $userModel = $sm->getServiceLocator()->get('Site\Model\User');
                     $districtModel = $sm->getServiceLocator()->get('Site\Model\District');
-                    $controller = new UserController($wechat,$userModel,$districtModel);
+                    $share = $sm->getServiceLocator()->get('Site\Model\share');
+                    $activityModel = $sm->getServiceLocator()->get('Site\Model\Activity');
+                    $controller = new UserController($wechat,$userModel,$districtModel,$share,$activityModel);
                     return $controller;
                 },
                 'Admin\Controller\Goods' => function ($sm) {

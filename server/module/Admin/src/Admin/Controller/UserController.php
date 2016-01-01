@@ -15,19 +15,22 @@ use Site\Controller\BaseController;
 use Site\Controller\Result;
 use Site\Entity\MessagesLogEntity;
 use Site\Entity\UserPackageEntity;
+use Site\Model\Activity;
 use Site\Model\District;
 use Site\Model\GiftList;
 use Site\Model\Messages;
 use Site\Entity\UserAddressEntity;
 use Site\Model\GiftPackage;
+use Site\Model\Share;
 use Wechat\Entity\WechatMessageEntity;
+use Wechat\Model\Wechat;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 use Site\Entity\UserEntity;
 use Site\Entity\ProfileEntity;
 use Site\Model\User;
 
-class UserController extends \Site\Controller\UserController {
+class UserController extends BaseController {
 
     /**
      * @var User
@@ -38,6 +41,14 @@ class UserController extends \Site\Controller\UserController {
      */
     public $districtModel;
 
+    public function __construct(Wechat $wechatModel ,User $userModel,District $district,Share $share,Activity
+    $activity) {
+        $this->wechat = $wechatModel;
+        $this->userModel = $userModel;
+        $this->districtModel = $district;
+        $this->share = $share;
+        $this->activity = $activity;
+    }
 
     /**
      *用户首页
@@ -158,6 +169,29 @@ class UserController extends \Site\Controller\UserController {
         return $view;
     }
 
+
+    /**
+     * 登陆
+     * @param $name
+     * @param $pwd
+     * @param bool $checkPassword
+     * @return \Zend\Authentication\Result
+     */
+    protected function login($name ,$pwd, $checkPassword = true){
+        $authService = $this->authentication()->getAuthService();
+        $authService->clearIdentity();
+
+        $authAdapter = $this->authentication()->getAuthAdapter();
+        $authAdapter->setUsername($name);
+        $authAdapter->setPassword($pwd);
+        //when social login,pass check password
+        $authAdapter->setCheckPassword($checkPassword);
+
+        $result = $authService->authenticate();
+        //reset check password
+        $authAdapter->setCheckPassword(true);
+        return $result;
+    }
 
 
 }
