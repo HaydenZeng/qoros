@@ -42,7 +42,7 @@ class IndexController extends \Site\Controller\IndexController
         //用户关注回复
 //        $type = $this->wechat->getRevType();
 //        if($type == Wechat::MSGTYPE_EVENT){
-            $this->doEvent();
+//            $this->doEvent();
 //        }
 //        $openId = $this->wechat->getOpenId();
 //        if($type == Wechat::MSGTYPE_TEXT ||$type == Wechat::MSGTYPE_IMAGE ||$type == Wechat::MSGTYPE_VOICE){
