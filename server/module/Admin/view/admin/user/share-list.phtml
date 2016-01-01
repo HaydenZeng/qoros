@@ -1,0 +1,132 @@
+<!-- End Navigation -->
+<div class="container-fluid main-content">
+    <!-- DataTables Example -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+                <div class="widget-content padded clearfix">
+
+                    <div class="heading">
+                        <i class="icon-table"></i>分享列表<br><br>
+                        <label style="float:left; padding-top: 5px;">筛选活动：</label>
+                        <div class="col-md-1">
+                            <select id="activityId" class="form-control">
+                                <option value="0" <?php echo $activityId == 0 ? 'selected' : ''?>>全部</option>
+                                <option value="1" <?php echo $activityId == 1 ? 'selected' : ''?>>活动1</option>
+                                <option value="2" <?php echo $activityId == 2 ? 'selected' : ''?>>活动2</option>
+                                <option value="3" <?php echo $activityId == 3 ? 'selected' : ''?>>活动3</option>
+                                <option value="4" <?php echo $activityId == 4 ? 'selected' : ''?>>活动4</option>
+                                <option value="5" <?php echo $activityId == 5 ? 'selected' : ''?>>活动5</option>
+                                <option value="6" <?php echo $activityId == 6 ? 'selected' : ''?>>活动6</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <th width="20%">姓名</th>
+                        <th width="20%">手机号</th>
+                        <th width="30%">活动名称</th>
+                        <th>时间</th>
+                        </thead>
+                        <tbody>
+                        <?php foreach($paginator as $share) :?>
+                            <tr>
+                                <input type="hidden" id="activityId" value="<?php echo $share->id;?>">
+
+                                <td><?php echo $share->user->username;?></td>
+                                <td><?php echo $share->user->mobile;?></td>
+                                <td><?php echo $activities[$share->id]->title;?></td>
+                                <td><?php echo $share->created->format("Y-m-d");?></td>
+                            </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
+
+                    <?php
+                    // add at the end of the file after the table
+                    echo $this->paginationControl(
+                        $this->paginator,
+                        'sliding',
+                        'admin/paginator.phtml',
+                        array(
+                            'route' => 'admin',
+                            'controller' => 'admin-user',
+                            'action' => 'shareList',
+                            'id'=>0
+                        )
+                    );
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    var origin_start = '';
+    var origin_end = '';
+
+    $(function(){
+        $('.btn-edit').click(function(){
+            $(this).parent().hide();
+            $(this).parent().parent().find('#btn2-box').show();
+            var start_time = $(this).parent().parent().parent().find('#start_time').html();
+            var end_time = $(this).parent().parent().parent().find('#end_time').html();
+            origin_start = start_time;
+            origin_end = end_time;
+            $(this).parent().parent().parent().find('#start_time').html('<input id="input_start" class="form-control datepicker" type="text" value="'+start_time+'">');
+            $(this).parent().parent().parent().find('#end_time').html('<input id="input_end" class="form-control datepicker" type="text" value="'+end_time+'">');
+            $(this).parent().parent().parent().find('#input_start').datepicker({
+                format:'yyyy-mm-dd'
+            });
+            $(this).parent().parent().parent().find('#input_end').datepicker({
+                format:'yyyy-mm-dd'
+            });
+        });
+
+        $('.btn-cancel').click(function(){
+            hideEdit(this,origin_start,origin_end);
+        });
+
+        $('.btn-ok').click(function(){
+            var activityId = $(this).parent().parent().parent().find('#activityId').val();
+            var start_time = $(this).parent().parent().parent().find('#input_start').val();
+            var end_time = $(this).parent().parent().parent().find('#input_end').val();
+            var btn_cancel = $(this).parent().find('.btn-cancel');
+            $.ajax({
+                type: 'POST',
+                url: '/qoros/adm/admin-award/setActivityTime',
+                data: {
+                    activityId:activityId,
+                    start_time:start_time,
+                    end_time:end_time
+                },
+                dataType: "json",
+                success: function (data) {
+                    if(data.status > 0){
+                        showModal('系统提示',data.message);
+                    } else  {
+                        hideEdit(btn_cancel,start_time,end_time);
+                    }
+                }
+            });
+        });
+
+        $("#activityId").change(function(){
+            window.location.href = '/qoros/adm/admin-index/shareList?activityId='+$("#activityId").val();
+        });
+
+
+    });
+
+    function hideEdit(obj,start,end){
+        $(obj).parent().parent().find('#btn1-box').show();
+        $(obj).parent().hide();
+        $(obj).parent().parent().parent().find('#start_time').html(start);
+        $(obj).parent().parent().parent().find('#end_time').html(end);
+    }
+</script>

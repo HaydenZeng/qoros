@@ -15,11 +15,13 @@ use Site\Controller\BaseController;
 use Site\Controller\Result;
 use Site\Entity\MessagesLogEntity;
 use Site\Entity\UserPackageEntity;
+use Site\Model\Activity;
 use Site\Model\District;
 use Site\Model\GiftList;
 use Site\Model\Messages;
 use Site\Entity\UserAddressEntity;
 use Site\Model\GiftPackage;
+use Site\Model\Share;
 use Wechat\Entity\WechatMessageEntity;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
@@ -27,7 +29,7 @@ use Site\Entity\UserEntity;
 use Site\Entity\ProfileEntity;
 use Site\Model\User;
 
-class UserController extends \Site\Controller\UserController {
+class UserController extends Controller {
 
     /**
      * @var User
@@ -37,6 +39,26 @@ class UserController extends \Site\Controller\UserController {
      * @var District
      */
     public $districtModel;
+    /**
+     * @var Share
+     */
+    public $share;
+
+
+    /**
+     * @var Activity
+     */
+    public $activity;
+
+
+    public function __construct(Wechat $wechatModel ,User $userModel,
+                                District $district,Share $share,Activity $activity) {
+        $this->wechat = $wechatModel;
+        $this->userModel = $userModel;
+        $this->districtModel = $district;
+        $this->share = $share;
+        $this->activity = $activity;
+    }
 
 
     /**
@@ -142,6 +164,21 @@ class UserController extends \Site\Controller\UserController {
         return $view;
     }
 
+
+    public function shareListAction(){
+        $view = new ViewModel();
+        $page = $this->getEvent()->getRouteMatch()->getParam('page', 1);
+        $size = $this->getEvent()->getRouteMatch()->getParam('size', 10);
+        $activityId = $this->getParam('activityId',0);
+        $paginator = $this->share->getList($activityId,$page,$size);
+        $activities = array();
+        foreach($paginator as $share){
+            $activities[$share->id] = $this->activity->getById($share->activityId);
+        }
+        $view->setVariables(array('paginator' => $paginator, 'activities' => $activities,'activityId'=>$activityId,
+            'page'=>$page));
+        return $view;
+    }
 
 
 
