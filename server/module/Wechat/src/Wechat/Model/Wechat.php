@@ -279,7 +279,7 @@ class Wechat
      * 快捷键文本
      */
     public function getFastKeyText(){
-        $text = '智慧生活，美学体验，欢迎您加入素渡大家庭';
+        $text = '';
         return $text;
     }
 

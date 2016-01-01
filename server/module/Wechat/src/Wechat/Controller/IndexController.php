@@ -42,15 +42,16 @@ class IndexController extends \Site\Controller\IndexController
         //用户关注回复
 //        $type = $this->wechat->getRevType();
 //        if($type == Wechat::MSGTYPE_EVENT){
-//            $this->doEvent();
+            $this->doEvent();
 //        }
 //        $openId = $this->wechat->getOpenId();
 //        if($type == Wechat::MSGTYPE_TEXT ||$type == Wechat::MSGTYPE_IMAGE ||$type == Wechat::MSGTYPE_VOICE){
 //            $this->checkUserLogin($openId);
 //        }
         //转发消息给多客服
-        $this->wechat->transfer_customer_service();
+//        $this->wechat->transfer_customer_service();
         $view->result = '';
+        $this->wechat->textReply('');
         return $view;
     }
 
@@ -63,18 +64,10 @@ class IndexController extends \Site\Controller\IndexController
         switch($event['event']){
             case Wechat::EVENT_SUBSCRIBE:
                 $openId = $this->wechat->getOpenId();
-
                 if($this->userModel->getByOpenId($openId)){
                     //如果已经绑定过，则发送欢迎词
                     $this->wechat->textReply($this->wechat->getFastKeyText());
-                }else{
-                    //如果没有绑定，且数据库中包含该手机，则提示去绑定
-                    $data = array('first'=>'用户绑定提醒','keyword1'=>'系统通知','keyword2'=>date('Y-m-d'),
-                        'remark'=>'欢迎来到素渡！感谢您的关注！');
-                    $href = "http://{$_SERVER['SERVER_NAME']}/user/bind";
-                    $this->wechat->sendTemplateMessage($openId,WechatMessageEntity::TEMPLATE_NORMAL,$data,$href);
                 }
-
                 break;
         }
     }
