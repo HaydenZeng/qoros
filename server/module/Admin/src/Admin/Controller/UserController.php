@@ -158,7 +158,7 @@ class UserController extends BaseController {
         $view = new ViewModel();
         $page = $this->getEvent()->getRouteMatch()->getParam('page', 1);
         $size = $this->getEvent()->getRouteMatch()->getParam('size', 10);
-        $activityId = $this->getEvent()->getRouteMatch()->getParam('activityId', 0);
+        $activityId = $this->getEvent()->getRouteMatch()->getParam('id', 0);
         $paginator = $this->share->getList($activityId,$page,$size);
         $activities = array();
         foreach($paginator as $share){
