@@ -64,7 +64,7 @@ class UserController extends BaseController {
 
     /**
      * 用户列表
-     * @return \Zend\Http\Response|ViewModel
+     * @return \Zend\Http\Response|ViewModea'dl
      */
     public function listAction(){
         $user = $this->authentication()->getIdentity();

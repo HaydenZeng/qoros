@@ -53,7 +53,7 @@
                             'route' => 'admin',
                             'controller' => 'admin-index',
                             'action' => 'shareList',
-                            'id'=>0
+                            'id'=>$activityId
                         )
                     );
                     ?>
@@ -117,7 +117,7 @@
         });
 
         $("#activityId").change(function(){
-            window.location.href = '/qoros/adm/admin-index/shareList?activityId='+$("#activityId").val();
+            window.location.href = '/qoros/adm/admin-user/shareList?activityId='+$("#activityId").val();
         });
 
 
