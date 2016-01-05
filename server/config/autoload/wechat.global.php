@@ -45,7 +45,7 @@ return array(
                 array('name' => '观致3都市SUV', 'type' => 'view', 'url' => 'http://www.qoros.com/qoros_3_city_suv/?utm_medium=wechat'),
                 array('name' => '观致5 SUV', 'type' => 'view', 'url' => 'http://www.qoros.com/qoros_5_suv/?utm_source=officialqorosauto&utm_medium=wechat'),
             )),
-            array('name' => '素朴生活', 'sub_button' => array(
+            array('name' => '购车助手', 'sub_button' => array(
                 array('name' => '保险计划', 'type' => 'view', 'url' => 'http://www.qoros.com/insurance/?utm_medium=wechat'),
                 array('name' => '观致超惠车贷专案', 'type' => 'view', 'url' => 'http://www.qoros.com/financing/?utm_medium=wechat'),
                 array('name' => '查找经销商', 'type' => 'view', 'url' => 'http://www.qoros.com/dealers/?utm_medium=wechat'),
