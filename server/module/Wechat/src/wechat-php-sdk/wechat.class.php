@@ -1185,7 +1185,7 @@ class Wechat
 			if (!$json || isset($json['errcode'])) {
 				$this->errCode = $json['errcode'];
 				$this->errMsg = $json['errmsg'];
-                $this->log('checkAuth:'.$json['errcode'].'----'.$json['errmsg']);
+//                $this->log('checkAuth:'.$json['errcode'].'----'.$json['errmsg']);
 				return false;
 			}
 			$this->access_token = $json['access_token'];

@@ -49,7 +49,7 @@ class IndexController extends \Site\Controller\IndexController
 //            $this->checkUserLogin($openId);
 //        }
         //转发消息给多客服
-//        $this->wechat->transfer_customer_service();
+        $this->wechat->transfer_customer_service();
         $view->result = '';
         return $view;
     }
