@@ -42,6 +42,13 @@ class AwardGoodsEntity extends Entity implements InputFilterAwareInterface
     public $inventory = 0;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="activity_id", type="integer")
+     */
+    public $activityId;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime", nullable=false)

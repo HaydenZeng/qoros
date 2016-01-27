@@ -48,7 +48,7 @@ class IndexController extends Controller {
     public function indexAction() {
         $user = $this->authentication()->getIdentity();
         if(!$user || $user->role != UserEntity::ROLE_ADMIN){
-            return $this->redirect()->toUrl('/qoros/admin/admin-user/login');
+            return $this->redirect()->toUrl('/qoros/adm/admin-user/login');
         }
 
         return $this->redirect()->toUrl('/qoros/adm/admin-user/list');

@@ -85,14 +85,14 @@ class PrizeController extends BaseController{
             }
         }
         if(count($randArr) == 0){//没有中奖
-            $randArr[] = 7;
-            $randArr[] = 8;
-            $randArr[] = 9;
+            $randArr[] = -1;
+            $randArr[] = -2;
+            $randArr[] = -3;
         }
         $r = rand(0, count($randArr) - 1);
         $goodsId = $randArr[$r];
 
-        if($goodsId < 7){
+        if($goodsId > 0){
             //奖项数量-1
             $item = $this->awardModel->getByActivityIdAndGoodsId($activityId, $goodsId);
             $item->count -= 1;
@@ -119,6 +119,11 @@ class PrizeController extends BaseController{
         }
 
         return new UnifyJsonModel(array($goodsId));
+    }
+
+    public function OpenRedPacketAction(){
+        $view = new ViewModel();
+        return $view;
     }
 
 }

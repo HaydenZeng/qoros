@@ -1,0 +1,113 @@
+<div class="lottery-bg">
+    <a id="open"></a>
+</div>
+
+
+<div style="display:none;" class="overlay"></div>
+
+<div class="tk-box" style="display:none;">
+    <span class="close"></span>
+    <span id="ico" class="ico-01"></span>
+    <span id="jp" class="jp-06" style="display: none;"></span>
+    <p class="p-01"><span id="sp">奖品刚刚与您擦肩而过，</span><br/>欢迎您下期再来！</p>
+</div>
+
+<div id="award_0" class="tk-box-02" style="display: none;">
+    <span class="close"></span>
+    <span class="ico-01"></span>
+    <p class="p-01">观致送你么么哒，吉祥如意过新年!</p>
+
+</div>
+<div id="award_7" class="tk-box-02" style="display:none">
+    <span class="close"></span>
+    <span class="ico-02"></span>
+    <p class="p-02">&nbsp;&nbsp;&nbsp;&nbsp;恭喜您获得 <em>随车锦囊。</em></p>
+
+</div>
+<div id="award_8" class="tk-box-02" style="display:none">
+    <span class="close"></span>
+    <span class="ico-07"></span>
+    <p class="p-02">恭喜您获得 <em>1:43观致车模。</em></p>
+
+</div>
+<div id="award_9" class="tk-box-02" style="display:none">
+    <span class="close"></span>
+    <span class="ico-06"></span>
+    <p class="p-02">恭喜您获得 <em>自拍神器。</em></p>
+
+</div>
+<div id="award_10" class="tk-box-02" style="display:none">
+    <span class="close"></span>
+    <span class="ico-05"></span>
+    <p class="p-02">恭喜您获得 <em>自动收纳伞。</em></p>
+
+</div>
+<div id="award_11" class="tk-box-02" style="display:none">
+    <span class="close"></span>
+    <span class="ico-04"></span>
+    <p class="p-02">恭喜您获得 <em>充电式按摩靠垫。</em></p>
+
+</div>
+<div id="award_12" class="tk-box-02" style="display:none">
+    <span class="close"></span>
+    <span class="ico-03"></span>
+    <p class="p-02">恭喜您获得 <em>便携式工具套装。</em></p>
+
+</div>
+
+
+<script>
+    $(function(){
+        $('#open').click(function(){
+            $.ajax({
+                type: 'POST',
+                url: '/qoros/prize/RandAward',
+                data: {activityId:3},
+                dataType: "json",
+                success: function (data) {
+                    if(data.status > 0){
+                        $('#sp').html(data.message + ',');
+                        $('#ico').attr('class', 'ico-02');
+                        $('#jp').hide();
+                        $('.tk-box').show();
+                        $('.overlay').show();
+                    } else {
+                        var item = data.content[0];
+                        if(item==7){
+                            showAward(7)
+                        }
+                        if(item==8){
+                            showAward(8)
+                        }
+                        if(item==9){
+                            showAward(9)
+                        }
+                        if(item==10){
+                            showAward(10)
+                        }
+                        if(item==11){
+                            showAward(11)
+                        }
+                        if(item==12){
+                            showAward(12)
+                        }
+                        if(item<0){
+                            showAward(0)
+                        }
+                    }
+                }
+            });
+        });
+
+        $('.close').click(function(){
+            $('.overlay').hide();
+            $('.tk-box').hide();
+            $('.tk-box-02').hide();
+        });
+    });
+
+    function showAward(num){
+        $('.overlay').show();
+        $('#award_' + num).show();
+    }
+</script>

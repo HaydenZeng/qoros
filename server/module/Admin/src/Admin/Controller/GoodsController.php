@@ -30,9 +30,10 @@ class GoodsController extends Controller {
      * @return \Zend\Http\Response|ViewModel
      */
     public function indexAction() {
-        $goodsList = $this->goodsModel->getList();
+        $activityId = $this->getParam('activityId', 0);
+        $goodsList = $this->goodsModel->getList($activityId);
         $view = new ViewModel();
-        $view->setVariables(array('goodsList'=>$goodsList));
+        $view->setVariables(array('goodsList'=>$goodsList, 'activityId' => $activityId));
         return $view;
     }
 

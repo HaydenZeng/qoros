@@ -20,11 +20,14 @@ class Goods extends Model {
         return $this->getEntityManager()->find('Site\Entity\AwardGoodsEntity', $id);
     }
 
-    public function getList(){
+    public function getList($activityId = false){
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('goods')
             ->from('Site\Entity\AwardGoodsEntity', 'goods');
-
+        if($activityId){
+            $qb->where('goods.activityId = :activityId')
+                ->setParameter('activityId', $activityId);
+        }
         return $qb->getQuery()->getResult();
     }
 

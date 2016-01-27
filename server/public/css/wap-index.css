@@ -2,12 +2,12 @@
 html {  -webkit-text-size-adjust:none; font-size:100px;}
 body { -webkit-user-select: none;}
 body {
-	margin: 0; 
-	padding: 0;
-	font-family: Microsoft YaHei,宋体;
-	text-align: left; 
-	color: #999;
-	height:100%;
+    margin: 0;
+    padding: 0;
+    font-family: Microsoft YaHei,宋体;
+    text-align: left;
+    color: #999;
+    height:100%;
 }
 /*end container*/
 div, dl, dt, dd, ul, ol, li,
@@ -19,7 +19,7 @@ fieldset, legend,img
 {
     padding: 0;
     margin: 0;
-	border: 0;
+    border: 0;
 }
 h1, h2, h3, h4, h5, h6 {
     font-size: inherit;
@@ -34,23 +34,23 @@ em {
 }
 textarea {
     resize: none;
-	font-size: 0.135rem;
+    font-size: 0.135rem;
 }
 li, ol {
     list-style: none;
 }
 a {
-	color: #005197;
-	text-decoration: none;
-	outline:none;
+    color: #005197;
+    text-decoration: none;
+    outline:none;
 }
 
 /*text-ellipsis*/
 .text-ellipsis {
-	display: block;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 /*end text-ellipsis*/
 /**Start Float Clear**/
@@ -131,7 +131,7 @@ a {
 .bg-01 .wx{ float:left; width:6.4rem;}
 .bg-01 .wx img{ float:right; width:1.42rem; height:1.42rem; margin:1.02rem 0.76rem 0 0;}
 .bg-01 .wx .p-01{ float:left; line-height:0.3rem; color:#88531a; font-size:0.22rem; padding-left:0.72rem; width:3.3rem; margin-top:0.9rem;}
-.bg-01 .wx .p-02{ float:left; color:0.18rem; color:#c96b04; width:1.34rem; line-height:0.2rem; font-size:0.16rem; margin:0.18rem 0 0 0.2rem;}
+.bg-01 .wx .p-02{ float:left; color:0.18rem; color:#c96b04; width:1.34rem; line-height:0.2rem; font-size:0.16rem; margin:0.12rem 0 0 0.2rem;}
 .bg-01 .wx-2{ float:left; width:5.72rem; line-height:0.3rem; color:#a85904; font-size:0.23rem; padding-left:0.34rem; margin-top:0.5rem;}
 
 .bg-01 .hd-01{ float:left; width:4.56rem; height:1.36rem; background:url(../img/bg-15.png) 0 0 no-repeat; background-size:100% auto; margin-left:0.31rem; margin-top:0.7rem;}
@@ -197,3 +197,31 @@ a {
 .zs-03{float:left; width:6.4rem; height:10.46rem; background:url(../img/q503.jpg) 0 0 no-repeat; background-size:100% auto;}
 .zs-03 img{ float:left; width:2.43rem; height:2.5rem; margin-top:6.33rem; margin-left:2.07rem;}
 .zs-03 p{ text-align:center; display:inline-block; font-size:0.24rem; color:#848484; font-weight: bold; width:5.8rem; padding:0 0.3rem; margin-top:0.2rem;}
+
+
+
+
+.rule-08{ float:left; width:6.4rem; height:11.38rem; background:url(../img/bg-200.jpg) 0 0 no-repeat; background-size:100% auto;}
+.rule-08 a{ float:left; width:1.94rem; height:0.49rem; margin:5.7rem 0 0 2.22rem;}
+
+.tk-box-01{ position:fixed; background:url(../img/bg-201.png) 0 0 no-repeat; background-size:100% auto; left: 50%;    margin-left: -2.86rem;  top:50%; margin-top: -2.64rem;  width:5.72rem; height:5.29rem;   z-index: 11; text-align:center; display:none;  border-radius: 0.05rem;}
+.tk-box-01 .close{ position:absolute; width:0.3rem; height:0.3rem; top:0.2rem; right:0.2rem; cursor:pointer;}
+.tk-box-01 .p-01{ float:left; width:100%; color:#fff; font-size:0.28rem; margin-top:4.08rem;}
+
+.lottery-bg{ float:left; width:6.4rem; height:11.38rem; background:url(../img/bg-202.jpg) 0 0 no-repeat; background-size:100% auto;}
+.lottery-bg a{ float:left; width:0.96rem; height:1.08rem; margin:6.84rem 0 0 2.72rem;}
+
+.tk-box-02{position:fixed; background:url(../img/bg-203.png) 0 0 no-repeat; background-size:100% auto; left: 50%;    margin-left: -2.26rem;  top:50%; margin-top: -3.61rem;  width:4.52rem; height:7.23rem;   z-index: 11; text-align:center; display:none;  border-radius: 0.05rem;}
+.tk-box-02 .close{ position:absolute; width:0.3rem; height:0.3rem; top:0rem; right:0.07rem; cursor:pointer;}
+.tk-box-02 .ico-01{ width:2.38rem; height:2.5rem; background:url(../img/bg-204.gif) 0 0 no-repeat; background-size:100% auto; float:left; margin:2.98rem 0 0 1.1rem;}
+.tk-box-02 .ico-02{ width:2.52rem; height:3.2rem; background:url(../img/bg-205.gif) 0 0 no-repeat; background-size:100% auto; float:left; margin:2.79rem 0 0 1.02rem;}
+.tk-box-02 .ico-03{ width:2.52rem; height:3.27rem; background:url(../img/bg-206.gif) 0 0 no-repeat; background-size:100% auto; float:left; margin:2.79rem 0 0 1.02rem;}
+.tk-box-02 .ico-04{ width:2.52rem; height:3.32rem; background:url(../img/bg-207.gif) 0 0 no-repeat; background-size:100% auto; float:left; margin:2.79rem 0 0 1.02rem;}
+.tk-box-02 .ico-05{ width:3.49rem; height:3.32rem; background:url(../img/bg-208.gif) 0 0 no-repeat; background-size:100% auto; float:left; margin:2.79rem 0 0 0.45rem;}
+.tk-box-02 .ico-06{ width:3.49rem; height:3.32rem; background:url(../img/bg-209.gif) 0 0 no-repeat; background-size:100% auto; float:left; margin:2.79rem 0 0 0.45rem;}
+.tk-box-02 .ico-07{ width:3.49rem; height:3.32rem; background:url(../img/bg-210.gif) 0 0 no-repeat; background-size:100% auto; float:left; margin:2.79rem 0 0 0.45rem;}
+
+
+.tk-box-02 .p-01{ font-size:0.28rem; color:#fbda30; float:left; line-height:0.36rem; width:2.4rem; margin-left:1.21rem; margin-top:0.34rem;}
+.tk-box-02 .p-02{ font-size:0.28rem; color:#fff; float:left; line-height:0.36rem; width:100%; text-align:center; margin-top:0.34rem;}
+.tk-box-02 .p-02 em{ color:#fbda30;}

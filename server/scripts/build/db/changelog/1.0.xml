@@ -188,4 +188,28 @@
         </addColumn>
     </changeSet>
 
+
+    <changeSet author="xlong" id="20160126-1">
+        <addColumn tableName="award_goods">
+            <column name="activity_id" type="INT(10)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="xlong" id="20160126-2">
+        <comment>change user_company_refs' department to department_id</comment>
+        <sql>truncate table award_goods; </sql>
+    </changeSet>
+    <changeSet author="xlong" id="20160126-3">
+        <loadData
+                file="data/goods_1.csv"
+                tableName="award_goods"/>
+    </changeSet>
+    <changeSet author="xlong" id="20160126-4">
+        <comment>change user_company_refs' department to department_id</comment>
+        <sql>truncate table award_items; </sql>
+    </changeSet>
+    <changeSet author="xlong" id="20160126-5">
+        <loadData
+                file="data/items.csv"
+                tableName="award_items"/>
+    </changeSet>
 </databaseChangeLog>
