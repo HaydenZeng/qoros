@@ -176,11 +176,11 @@
                 tableName="activities"/>
     </changeSet>
 
-    <changeSet author="xlong" id="20151226-7">
-        <loadData
-                file="data/items.csv"
-                tableName="award_items"/>
-    </changeSet>
+    <!--<changeSet author="xlong" id="20151226-7">-->
+        <!--<loadData-->
+                <!--file="data/items.csv"-->
+                <!--tableName="award_items"/>-->
+    <!--</changeSet>-->
 
     <changeSet author="xlong" id="20151226-8">
         <addColumn tableName="wins">
