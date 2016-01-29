@@ -70,7 +70,7 @@ class UserController extends BaseController{
                 $code = $this->getParam('code', false);
                 if(!$code){
                     $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME']
-                        .'/qoros/user/completeInfo');
+                        .'/test_qoros/user/completeInfo');
                     return $this->redirect()->toUrl($redirectUrl);
                 }
                 $tokenData = $this->wechat->getOauthData();
@@ -126,7 +126,7 @@ class UserController extends BaseController{
             $user->addr_detail =  $data['addr_detail'];
             $user->postcode = $data['postcode'];
             $this->userModel->updateUserInfo($user);
-            return $this->redirect()->toUrl('/qoros/');
+            return $this->redirect()->toUrl('/test_qoros/');
 //            return new UnifyJsonModel();
         }
 
@@ -177,7 +177,7 @@ class UserController extends BaseController{
         $user = $this->authentication()->getIdentity();
         $redirect = $this->getParam('redirect','/qoros');
         if(!$user){
-            return $this->redirect()->toUrl('/qoros/adm/admin-user/login?redirect='.urlencode($redirect));
+            return $this->redirect()->toUrl('/test_qoros/adm/admin-user/login?redirect='.urlencode($redirect));
         }
         $view->setVariables(array('redirectUri'=>$redirect));
         return $view;

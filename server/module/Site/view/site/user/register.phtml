@@ -98,7 +98,7 @@
         var openid = $("#openid").val();
         $.ajax({
             type: 'POST',
-            url: '/qoros/user/register',
+            url: '/test_qoros/user/register',
             data: {mobile:mobile,openid:openid},
             dataType: "json",
             beforeSend: function(){
@@ -109,7 +109,7 @@
                 if (data.status > 0) {
                     $('#err_tip').show();
                 } else {
-                    window.location.href = '/qoros/user/completeInfo';
+                    window.location.href = '/test_qoros/user/completeInfo';
                 }
             }
         });
