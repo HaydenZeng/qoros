@@ -85,7 +85,7 @@ class IndexController extends Controller{
                 if($user){
                     $result = $this->login($user->mobile, null, false);
                     if ($result->getCode() == Result::SUCCESS && $user->username != $user->openid) {
-                        return $this->redirect()->toUrl('/qoros');
+                        return $this->redirect()->toUrl('/test_qoros');
                     }
                 }
             }
