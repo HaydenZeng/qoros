@@ -1,5 +1,7 @@
 <div class="rule-08">
-    <a href="/test_qoros/prize/OpenRedPacket"></a>
+    <?php if($activity->startTime->getTimestamp() < $now && $now < $activity->endTime->getTimestamp()){ ?>
+        <a href="/test_qoros/prize/OpenRedPacket"></a>
+    <?php }?>
 </div>
 
 <div class="overlay" style="display:none"></div>
