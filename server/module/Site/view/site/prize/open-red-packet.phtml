@@ -4,6 +4,11 @@
 
 
 <div style="display:none;" class="overlay"></div>
+<div id="award_none" style="display:none;" class="tk-box-01">
+    <span class="close"></span>
+
+    <p class="p-01">我们5号开奖，届时不见不散哟~</p>
+</div>
 
 <div class="tk-box" style="display:none;">
     <span class="close"></span>
@@ -94,6 +99,9 @@
                         if(item<0){
                             showAward(0)
                         }
+                        if(item==0){
+                            showAward('none')
+                        }
                     }
                 }
             });
@@ -103,6 +111,7 @@
             $('.overlay').hide();
             $('.tk-box').hide();
             $('.tk-box-02').hide();
+            $('.tk-box-01').hide();
         });
     });
 

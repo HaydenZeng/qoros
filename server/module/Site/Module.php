@@ -106,7 +106,8 @@ class Module
                     $awardModel = $sm->getServiceLocator()->get('Site\Model\Award');
                     $userModel = $sm->getServiceLocator()->get('Site\Model\User');
                     $wechat = $sm->getServiceLocator()->get('Wechat\Model\Wechat');
-                    $controller = new PrizeController($awardModel,$userModel,$wechat);
+                    $activityModel = $sm->getServiceLocator()->get('Site\Model\Activity');
+                    $controller = new PrizeController($awardModel,$userModel,$wechat,$activityModel);
                     return $controller;
                 },
             ],

@@ -12,6 +12,7 @@ use Common\View\ErrorJsonModel;
 use Common\View\UnifyJsonModel;
 use Site\Entity\UserEntity;
 use Site\Entity\WinEntity;
+use Site\Model\Activity;
 use Site\Model\Award;
 use Wechat\Entity\WechatMessageEntity;
 use Wechat\Model\Wechat;
@@ -33,11 +34,16 @@ class PrizeController extends BaseController{
      * @var Wechat
      */
     public $wechat;
+    /**
+     * @var Activity
+     */
+    protected $activityModel;
 
-    public function __construct(Award $awardModel, User $userModel ,Wechat $wechatModel) {
+    public function __construct(Award $awardModel, User $userModel ,Wechat $wechatModel, Activity $activityModel) {
         $this->awardModel = $awardModel;
         $this->userModel = $userModel;
         $this->wechat = $wechatModel;
+        $this->activityModel = $activityModel;
     }
 
     public function indexAction() {
@@ -53,6 +59,11 @@ class PrizeController extends BaseController{
      */
     public function RandAwardAction(){
         $activityId = $this->getParam('activityId', null);
+        $activity = $this->activityModel->getById($activityId);
+        $now = time();
+        if($activity->endTime->getTimestamp() < $now || $now < $activity->startTime->getTimestamp()){
+            return new UnifyJsonModel(array(0));
+        }
         $user = $this->userModel->getById($this->identity()->id);
         $is_lucky = 0;
         switch($activityId){
