@@ -77,7 +77,7 @@ class IndexController extends Controller{
             if(parent::isWeixin() && !$request->isPost()){
                 $code = $this->getParam('code', false);
                 if(!$code){
-                    $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME'].'/test_qoros/index/index');
+                    $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME'].'/qoros/index/index');
                     return $this->redirect()->toUrl($redirectUrl);
                 }
                 $tokenData = $this->wechat->getOauthData();
@@ -85,7 +85,7 @@ class IndexController extends Controller{
                 if($user){
                     $result = $this->login($user->mobile, null, false);
                     if ($result->getCode() == Result::SUCCESS && $user->username != $user->openid) {
-                        return $this->redirect()->toUrl('/test_qoros');
+                        return $this->redirect()->toUrl('/qoros');
                     }
                 }
             }
@@ -218,7 +218,7 @@ class IndexController extends Controller{
         if(parent::isWeixin() && !$request->isPost()){
             $code = $this->getParam('code', false);
             if(!$code){
-                $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME'].'/test_qoros/index/huanyingxin');
+                $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME'].'/qoros/index/huanyingxin');
                 return $this->redirect()->toUrl($redirectUrl);
             }
             $tokenData = $this->wechat->getOauthData();
@@ -238,7 +238,7 @@ class IndexController extends Controller{
         $href = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $jsSign = $this->wechat->getJsSign($href);
 
-        $url = 'http://'.$_SERVER['HTTP_HOST'].'/test_qoros/img/share_image.png';
+        $url = 'http://'.$_SERVER['HTTP_HOST'].'/qoros/img/share_image.png';
         $view->setVariables(array('jsSign'=>$jsSign,'url'=>$url));
         return $view;
     }
