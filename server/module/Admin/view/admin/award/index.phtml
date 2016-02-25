@@ -30,7 +30,7 @@
                                 <td>
                                     <div id="btn1-box">
                                         <?php if($activity->type == \Site\Entity\ActivityEntity::TYPE_DRAW){?>
-                                            <a href="/qoros/adm/admin-award/setAward/<?php echo $activity->id;
+                                            <a href="cd /v  /test_qoros/adm/admin-award/setAward/<?php echo $activity->id;
                                             ?>">编辑奖项</a>
                                         <?php }?>
                                         <a class="btn-edit" style="margin-left: 10px;">设置时间</a>
@@ -90,7 +90,7 @@
             var btn_cancel = $(this).parent().find('.btn-cancel');
             $.ajax({
                 type: 'POST',
-                url: '/qoros/adm/admin-award/setActivityTime',
+                url: '/test_qoros/adm/admin-award/setActivityTime',
                 data: {
                     activityId:activityId,
                     start_time:start_time,

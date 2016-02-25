@@ -2,7 +2,7 @@
 
 return array(
 //    'wechat' => array(
-//        'url' => 'http://qoros.jiubei.me/qoros/wechat',
+//        'url' => 'http://qoros.jiubei.me/test_qoros/wechat',
 //        'token' => 'qoros',
 //        'EncodingAESKey' => 'hBNVdWU5i56ZqcsH38bwRrDDdALsljavwixhIILDXRi',
 //        'appid' => 'wx95ab641d29e1e251',
@@ -23,14 +23,14 @@ return array(
 //                array('name' => '预约试驾', 'type' => 'view', 'url' => 'http://www.qoros.com/test_drive/?utm_medium=wechat'),
 //            )),
 //            array('name' => '最新活动', 'sub_button' => array(
-//                array('name' => '观致5-暖心计划', 'type' => 'view', 'url' => 'http://qoroswechat.chinacloudapp.cn/qoros/user/register'),
+//                array('name' => '观致5-暖心计划', 'type' => 'view', 'url' => 'http://qoroswechat.chinacloudapp.cn/test_qoros/user/register'),
 //                array('name' => '观致5-任性计划', 'type' => 'view', 'url' => 'http://qoroswechat.chinacloudapp.cn/frontend/web/index.php?r=site/order'),
 //            )),
 //        ),
 //    ),
 
     'wechat' => array(
-        'url' => 'http://qoroswechat.chinacloudapp.cn/qoros/wechat',
+        'url' => 'http://qoroswechat.chinacloudapp.cn/test_qoros/wechat',
         'token' => 'qoros',
         'EncodingAESKey' => 'HsjLzQpjG3v3HmLMTkjkVilOJ5A38rO7rqdTS7kcIp2',
         'appid' => 'wxe1e68f1d9cfd957e',
@@ -51,7 +51,7 @@ return array(
                 array('name' => '预约试驾', 'type' => 'view', 'url' => 'http://www.qoros.com/test_drive/?utm_medium=wechat'),
             )),
             array('name' => '最新活动', 'sub_button' => array(
-                array('name' => '观致5-暖心计划', 'type' => 'view', 'url' => 'http://qoroswechat.chinacloudapp.cn/qoros/user/register'),
+                array('name' => '观致5-暖心计划', 'type' => 'view', 'url' => 'http://qoroswechat.chinacloudapp.cn/test_qoros/user/register'),
                 array('name' => '观致5-任性计划', 'type' => 'view', 'url' => 'http://qoroswechat.chinacloudapp.cn/frontend/web/index.php?r=site/order'),
             )),
         ),

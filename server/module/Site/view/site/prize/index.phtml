@@ -14,8 +14,8 @@
     <p class="p-01"><span id="sp">奖品刚刚与您擦肩而过，</span><br/>欢迎您下期再来！</p>
 </div>
 
-<script src="/qoros/js/jQueryRotate.2.2.js"></script>
-<script src="/qoros/js/jquery.easing.min.js"></script>
+<script src="/test_qoros/js/jQueryRotate.2.2.js"></script>
+<script src="/test_qoros/js/jquery.easing.min.js"></script>
 <script>
     $(function(){
         $('.close').click(function(){
@@ -62,7 +62,7 @@
                     //后台随机奖品
                     $.ajax({
                         type: 'POST',
-                        url: '/qoros/prize/RandAward',
+                        url: '/test_qoros/prize/RandAward',
                         data: {activityId:$('#activityId').val()},
                         dataType: "json",
                         success: function (data) {

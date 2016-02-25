@@ -99,7 +99,7 @@
             var btn_cancel = $(this).parent().find('.btn-cancel');
             $.ajax({
                 type: 'POST',
-                url: '/qoros/adm/admin-award/setActivityTime',
+                url: '/test_qoros/adm/admin-award/setActivityTime',
                 data: {
                     activityId:activityId,
                     start_time:start_time,
@@ -117,7 +117,7 @@
         });
 
         $("#activityId").change(function(){
-            window.location.href = '/qoros/adm/admin-user/shareList?activityId='+$("#activityId").val();
+            window.location.href = '/test_qoros/adm/admin-user/shareList?activityId='+$("#activityId").val();
         });
 
 
