@@ -56,10 +56,10 @@ class UserController extends BaseController {
     public function indexAction(){
         $user = $this->authentication()->getIdentity();
         if(!$user || $user->role != UserEntity::ROLE_ADMIN){
-            return $this->redirect()->toUrl('/qoros/admin/admin-user/login');
+            return $this->redirect()->toUrl('/test_qoros/admin/admin-user/login');
         }
 
-        return $this->redirect()->toUrl('/qoros/adm/admin-user/list');
+        return $this->redirect()->toUrl('/test_qoros/adm/admin-user/list');
     }
 
     /**
@@ -71,7 +71,7 @@ class UserController extends BaseController {
         $page = $this->getEvent()->getRouteMatch()->getParam('page', 1);
         $size = $this->getEvent()->getRouteMatch()->getParam('size', 10);
         if(!$user || $user->role != UserEntity::ROLE_ADMIN){
-            return $this->redirect()->toUrl('/qoros/admin/admin-user/login');
+            return $this->redirect()->toUrl('/test_qoros/admin/admin-user/login');
         }
 
         $paginator = $this->userModel->getUsers(null,$page,$size);
@@ -129,7 +129,7 @@ class UserController extends BaseController {
                 $result = $this->login($mobile, $password);
                 switch ($result->getCode()) {
                     case Result::SUCCESS:
-                        return $this->redirect()->toUrl('/qoros/adm');
+                        return $this->redirect()->toUrl('/test_qoros/adm');
                     default:
                         throw new BusinessException('用户名或密码错误');
                 }
@@ -139,7 +139,7 @@ class UserController extends BaseController {
             }catch (\Exception $e) {
                 $this->flashMessenger()->addErrorMessage($e->getMessage());
             }
-            return $this->redirect()->toUrl('/qoros/adm/admin-user/login');
+            return $this->redirect()->toUrl('/test_qoros/adm/admin-user/login');
         }
 
         //toroute 跳转过来带的参数

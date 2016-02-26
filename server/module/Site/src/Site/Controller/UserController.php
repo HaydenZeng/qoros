@@ -49,7 +49,7 @@ class UserController extends BaseController{
     public function agreementAction(){
         $user = $this->authentication()->getIdentity();
         if($user){
-            return $this->redirect()->toUrl('/qoros');
+            return $this->redirect()->toUrl('/test_qoros');
         }
         $view = new ViewModel();
         return $view;
@@ -63,14 +63,14 @@ class UserController extends BaseController{
         $request = $this->getRequest();
         $user = $this->authentication()->getIdentity();
         if($user){
-            return $this->redirect()->toUrl('/qoros');
+            return $this->redirect()->toUrl('/test_qoros');
         }else{
             //get user info
             if(parent::isWeixin() && !$request->isPost()){
                 $code = $this->getParam('code', false);
                 if(!$code){
                     $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME']
-                        .'/qoros/user/completeInfo');
+                        .'/test_qoros/user/completeInfo');
                     return $this->redirect()->toUrl($redirectUrl);
                 }
                 $tokenData = $this->wechat->getOauthData();
@@ -78,7 +78,7 @@ class UserController extends BaseController{
                 if($user){
                     $result = $this->login($user->mobile, null, false);
                     if ($result->getCode() == Result::SUCCESS && $user->username != $user->openid) {
-                        return $this->redirect()->toUrl('/qoros');
+                        return $this->redirect()->toUrl('/test_qoros');
                     }
                 }
                 $view->setVariables(array('openid'=>$tokenData['openid']));
@@ -126,7 +126,7 @@ class UserController extends BaseController{
             $user->addr_detail =  $data['addr_detail'];
             $user->postcode = $data['postcode'];
             $this->userModel->updateUserInfo($user);
-            return $this->redirect()->toUrl('/qoros/');
+            return $this->redirect()->toUrl('/test_qoros/');
 //            return new UnifyJsonModel();
         }
 
@@ -175,9 +175,9 @@ class UserController extends BaseController{
     public function unauthorizedAction(){
         $view = new ViewModel();
         $user = $this->authentication()->getIdentity();
-        $redirect = $this->getParam('redirect','/qoros');
+        $redirect = $this->getParam('redirect','/test_qoros');
         if(!$user){
-            return $this->redirect()->toUrl('/qoros/adm/admin-user/login?redirect='.urlencode($redirect));
+            return $this->redirect()->toUrl('/test_qoros/adm/admin-user/login?redirect='.urlencode($redirect));
         }
         $view->setVariables(array('redirectUri'=>$redirect));
         return $view;
