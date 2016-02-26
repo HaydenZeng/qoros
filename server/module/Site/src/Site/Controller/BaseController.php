@@ -20,7 +20,7 @@ class BaseController extends Controller {
                 $code = $this->getParam('code', false);
                 if(!$code){
                     $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME']
-                        .'/test_qoros/user/register?redirect='.$redirect);
+                        .'/qoros/user/register?redirect='.$redirect);
                     return $this->redirect()->toUrl($redirectUrl);
                 }
                 $tokenData = $this->wechat->getOauthData();

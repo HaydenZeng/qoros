@@ -85,7 +85,7 @@
             var btn_cancel = $(this).parent().find('.btn-cancel');
             $.ajax({
                 type: 'POST',
-                url: '/test_qoros/adm/admin-goods/setGoodsInventory',
+                url: '/qoros/adm/admin-goods/setGoodsInventory',
                 data: {
                     goodsId:goodsId,
                     inventory:inventory
@@ -102,7 +102,7 @@
         });
 
         $("#activityId").change(function(){
-            window.location.href = '/test_qoros/adm/admin-goods/index?activityId='+$("#activityId").val();
+            window.location.href = '/qoros/adm/admin-goods/index?activityId='+$("#activityId").val();
         });
     });
 
