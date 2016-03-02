@@ -20,7 +20,7 @@ class BaseController extends Controller {
                 $code = $this->getParam('code', false);
                 if(!$code){
                     $redirectUrl = $this->wechat->getOauthRedirect('http://'.$_SERVER['SERVER_NAME']
-                        .'/test_qoros/user/register?redirect='.$redirect);
+                        .'/qoros/user/register?redirect='.$redirect);
                     return $this->redirect()->toUrl($redirectUrl);
                 }
                 $tokenData = $this->wechat->getOauthData();
@@ -28,7 +28,7 @@ class BaseController extends Controller {
                 if($user){
                     $result = $this->login($user->mobile, null, false);
                     if ($result->getCode() == Result::SUCCESS && $user->username != $user->openid) {
-                        return $this->redirect()->toUrl('/test_qoros');
+                        return $this->redirect()->toUrl('/qoros');
                     }
                 }
             }
