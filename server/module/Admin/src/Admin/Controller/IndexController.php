@@ -48,10 +48,10 @@ class IndexController extends Controller {
     public function indexAction() {
         $user = $this->authentication()->getIdentity();
         if(!$user || $user->role != UserEntity::ROLE_ADMIN){
-            return $this->redirect()->toUrl('/qoros/adm/admin-user/login');
+            return $this->redirect()->toUrl('/test_qoros/adm/admin-user/login');
         }
 
-        return $this->redirect()->toUrl('/qoros/adm/admin-user/list');
+        return $this->redirect()->toUrl('/test_qoros/adm/admin-user/list');
     }
 
     public function shareListAction(){
