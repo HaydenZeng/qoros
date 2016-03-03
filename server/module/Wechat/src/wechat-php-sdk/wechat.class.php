@@ -2470,6 +2470,7 @@ class Wechat
 			if (!$json || !empty($json['errcode'])) {
 				$this->errCode = $json['errcode'];
 				$this->errMsg = $json['errmsg'];
+                $this->log($this->errCode.'--'.$this->errMsg);
 				return false;
 			}
 			return $json;
