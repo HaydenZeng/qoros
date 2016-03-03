@@ -14,6 +14,7 @@
     </div>
     <div class="wx-2">您可以通过点击以下任务提前了解任务规则，我们将定期开启任务。请实时关注任务状态，不要错过观致5 SUV暖心为您呈现的专属精彩！</div>
 
+
 <!--    <a href="#" class="hd-01 hd-01-click hd-01-over"></a>-->
 <!--    <a href="#" class="hd-02 hd-02-click hd-02-over"></a>-->
 <!--    <a href="#" class="hd-03 hd-03-click hd-03-over"></a>-->
@@ -58,13 +59,38 @@
                     $href = ($click)?'/test_qoros/index/activitySix':'';
                     break;
             }
-            echo ' <a href="'.$href.'" class="'.$pre.' '. $click.' '. $over.'"></a>';
+            echo ' <a data-href="'.$href.'" class="'.$pre.' '. $click.' '. $over.'" onclick="handleActivity(this);"></a>';
         }
     ?>
 
 </div>
 
+<div style="display:none;" class="overlay"></div>
+<div class="tck-box-msg" style="display:none;">
+    <span class="close"></span>
+    <span id="jp" class="jp-07"></span>
+</div>
 
 <script>
+  $(function(){
+    $('.close').click(function(){
+        $('.tk-box-msg').hide();
+        $('.overlay').hide();
+    });
+  })
 
+  function handleActivity(e){
+     var $class=$(e).attr('class');
+     if($class.indexOf('over')!=-1){
+        //活动结束
+     }else if($class.indexOf('click')!=-1){
+       //活动已开启
+        window.location.href=$(e).attr(data-href);
+     }else{
+       //活动还没开始
+       $('.tk-box-msg').show();
+       $('.overlay').show();
+     }
+
+  }
 </script>

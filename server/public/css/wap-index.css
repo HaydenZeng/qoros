@@ -97,8 +97,8 @@ a {
 .tk-box .jp-04{ background:url(../img/activity3_04.gif) 0 0 no-repeat; width:3.04rem; height:1.38rem; background-size:100% auto; float:left; margin: 0.25rem 0 0 1.24rem;}
 .tk-box .jp-05{ background:url(../img/activity3_05.gif) 0 0 no-repeat; width:3.25rem; height:1.45rem; background-size:100% auto; float:left; margin: 0.25rem 0 0 1.15rem;}
 .tk-box .jp-06{ background:url(../img/activity3_06.gif) 0 0 no-repeat; width:3.25rem; height:1.45rem; background-size:100% auto; float:left; margin: 0.22rem 0 0 1.15rem;}
-
-
+.tk-box-msg{position: fixed;left: 50%;margin-left: -2.86rem;top: 50%;margin-top: -2.64rem;width: 5.72rem;height: 5.28rem; z-index: 11;text-align: center;border-radius: 0.05rem;background: url(../img/approaching.png) 0 0 no-repeat;background-size: cover;}
+.tk-box-msg .close{ position:absolute; width:0.3rem; height:0.3rem; background:url(../img/bg-04.gif) 0 0 no-repeat; background-size:100% auto; top:0.2rem; right:0.2rem; cursor:pointer;}
 .register-01{ float:left; width:6.4rem; height:11.38rem; background:url(../img/bg-07.jpg) 0 0 no-repeat; background-size:100% auto;}
 .register-01 .box{ float:left; width:5.22rem; background:#fff;  border-radius: 0.05rem; margin-left:0.34rem; margin-top:2.98rem; padding:0 0.25rem; padding-bottom:0.5rem;}
 .register-01 .box h3{ float:left; width:5.22rem; text-align:center; color:#404040; font-size:0.32rem; margin-top:0.3rem; padding-bottom:0.1rem;}
